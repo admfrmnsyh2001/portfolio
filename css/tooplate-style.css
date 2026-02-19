@@ -574,3 +574,17 @@ b, strong {
 
 
 /*project*/
+
+.about-image img {
+  border-radius: 100%;
+  border: transparent;
+  width: 50%; /* Default for mobile and smaller screens */
+  margin: 0 auto; /* Center the image on smaller screens */
+  display: block; /* Ensure it behaves like a block element for margin: auto to work */
+}
+
+@media (min-width: 992px) { /* Adjust for large screens */
+  .about-image img {
+    width: 70%;
+  }
+}

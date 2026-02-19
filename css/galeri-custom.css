@@ -1,0 +1,63 @@
+div.gallery {
+  border: 1px solid transparent;
+  border-radius: 10px;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+}
+
+div.gallery:hover {
+  border: 5px solid #5b5b5b;
+  border-radius: 10px;
+  background: #5b5b5b;
+
+}
+
+div.gallery:hover .icon,
+div.gallery:hover .title,
+div.gallery:hover .desc {
+  color: #ffc200;
+  transition: 0.1s all ease-in-out;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
