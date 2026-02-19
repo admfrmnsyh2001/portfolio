@@ -251,10 +251,10 @@ b, strong {
 }
 .navbar-toggler .navbar-toggler-icon {
   background: #212121;
-  display: b;
+  display: block;
   width: 100%;
   height: 2px;
-  margin: 5px 0;
+  margin: 2px 0;
   transition: all 0.4s ease;
   position: relative;
 }
@@ -475,6 +475,7 @@ b, strong {
 }
 @media (max-width: 991px) {
   .full-screen {
+    padding-top: 4rem;
     padding-bottom: 4rem;
   }
 
@@ -483,7 +484,7 @@ b, strong {
   }
 
   .about-image {
-    margin-top: 4em;
+    margin-top: 2em;
   }
 
   .mobile-mt-2,
@@ -497,15 +498,15 @@ b, strong {
 }
 @media (max-width: 767px)  {
   h1 {
-    font-size: 2.4em;
+    font-size: 2.2em;
   }
 
   h2 {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 
   .animated-item {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .navbar-collapse {
@@ -520,10 +521,17 @@ b, strong {
 }
 @media (max-width: 580px) {
 	.animated-info {
-		min-width: 200px;
+		min-width: 280px;
 	}
   .animated-item {
-    font-size: 30px;
+    font-size: 22px;
+  }
+  .animated-item h3 {
+    margin: 0;
+  }
+
+  .about-image img {
+    width: 80% !important;
   }
 
   .custom-btn-group {
@@ -554,7 +562,7 @@ b, strong {
   }
 
   .full-screen {
-    padding: 4rem 0;
+    padding: 2rem 0;
   }
 
   .mobile-block {
