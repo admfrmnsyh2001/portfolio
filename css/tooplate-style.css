@@ -576,15 +576,17 @@ b, strong {
 /*project*/
 
 .about-image img {
-  border-radius: 100%;
+  border-radius: 50%;
   border: transparent;
-  width: 50%; /* Default for mobile and smaller screens */
-  margin: 0 auto; /* Center the image on smaller screens */
-  display: block; /* Ensure it behaves like a block element for margin: auto to work */
+  width: 40%; /* Reduced from 50% */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
 }
 
-@media (min-width: 992px) { /* Adjust for large screens */
+@media (min-width: 992px) { 
   .about-image img {
-    width: 70%;
+    width: 50%; /* Reduced from 70% */
   }
 }
