@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -20,30 +21,42 @@
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="css/tooplate-style.css">
 
-  </head>
-  <body>
-    
-    <script>
-function play() {//Link Audio Bisa Diganti
-var audio = new Audio('https://kuisberhadiah.likeadream.replco/musiktiktok.m4a');audio.play();audio.loop=true;audio.addEventListener('ended', function() {this.currentTime = 0;this.play();}, false);}         
+</head>
 
-//Pesan WhatsApp
- 
-</script>
+<body>
+
+    <script>
+        function play() {//Link Audio Bisa Diganti
+            var audio = new Audio('https://kuisberhadiah.likeadream.replco/musiktiktok.m4a'); audio.play(); audio.loop = true; audio.addEventListener('ended', function () { this.currentTime = 0; this.play(); }, false);
+        }
+
+        //Pesan WhatsApp
+
+    </script>
 
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><i class='uil uil-user'></i> Adam</a>
+            <div class="navbar-brand d-flex align-items-center">
+                <i class="uil uil-user mr-2" style="font-size: 30px;"></i>
+                <a href="index.html">Adam</a>
+            </div>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="d-flex align-items-center order-sm-3">
+                <span class="color-mode mr-3 mr-sm-0">
+                    <i class="color-mode-icon"></i>
+                    <span class="d-none d-sm-inline-block font-weight-bold ml-2" style="font-size: 16px;">Theme</span>
+                </span>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse order-sm-2" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a href="#about" class="nav-link"><span data-hover="About">About</span></a>
@@ -52,16 +65,12 @@ var audio = new Audio('https://kuisberhadiah.likeadream.replco/musiktiktok.m4a')
                         <a href="#resume" class="nav-link"><span data-hover="Resume">Resume</span></a>
                     </li>
                     <li class="nav-item">
+                        <a href="#projects" class="nav-link"><span data-hover="Highlight Projects">Highlight
+                                Projects</span></a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#contact" class="nav-link"><span data-hover="Contact">Contact</span></a>
                     </li>
-                </ul>
-
-                <ul class="navbar-nav ml-lg-auto">
-                    <div class="ml-lg-4">
-                      <div class="color-mode d-lg-flex justify-content-center align-items-center">
-                        <i class="color-mode-icon"></i>Theme
-                      </div>
-                    </div>
                 </ul>
             </div>
         </div>
@@ -71,35 +80,42 @@ var audio = new Audio('https://kuisberhadiah.likeadream.replco/musiktiktok.m4a')
     <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
         <div class="container">
             <div class="row">
-                
 
-                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
-                    <div class="about-text">
-                        <small class="small-text">Welcome to <span class="mobile-block">my portfolio website!</span></small>
+
+                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center order-2 order-lg-1">
+                    <div class="about-text text-center text-lg-left w-100">
                         <h1 class="animated animated-text">
                             <span class="mr-2">Hello, i'm</span>
-                                <div class="animated-info">
-                                    <span class="animated-item"><h3>Adam Firmansyah</h3></span>
-                                    <span class="animated-item"><h3>Security System Engineer</h3></span>
-                                    <span class="animated-item"><h3>IoT Developer</h3></span>
-                                    <span class="animated-item"><h3>Network Administrator</h3></span>
-                                </div>
+                            <div class="animated-info">
+                                <span class="animated-item">
+                                    <h3>Adam Firmansyah</h3>
+                                </span>
+                                <span class="animated-item">
+                                    <h3>Security System Engineer</h3>
+                                </span>
+                                <span class="animated-item">
+                                    <h3>IoT Enthusiast</h3>
+                                </span>
+                                <span class="animated-item">
+                                    <h3>Network Administrator</h3>
+                                </span>
+                            </div>
                         </h1>
                         <br>
 
-                        <p>Capture & enjoy every moment</p>
-                        
                         <div class="custom-btn-group mt-4">
-                          <a href="https://drive.google.com/file/d/1OxjR90PliZjJKLMrA6Hpm6ipI7S38_wE/view?usp=sharing" class="btn mr-lg-2 custom-btn"><i class='uil uil-file-alt'></i>Download Resume</a>
-                          <a href="#contact" class="btn custom-btn custom-btn-bg custom-btn-link">More Information?</a>
+                            <a href="https://drive.google.com/file/d/1vyACz4fR4_p4dIv2gfeg16hlNWfgkMPN/view?usp=drivesdk"
+                                class="btn mr-lg-2 custom-btn"><i class='uil uil-file-alt'></i>Download Resume</a>
+                            <a href="#contact" class="btn custom-btn custom-btn-bg custom-btn-link">More
+                                Information?</a>
                         </div>
                     </div>
                 </div>
 
 
-                <div class="col-lg-5 col-md-12 col-12 text-center">
+                <div class="col-lg-5 col-md-12 col-12 text-center order-1 order-lg-2 mb-5 mb-lg-0">
                     <div class="about-image svg text-center">
-                        <img src="images/undraw/adam2.svg" class="img-fluid" alt="svg image">
+                        <img src="images/undraw/adam.png" class="img-fluid" alt="Adam's Photo">
                     </div>
                 </div>
 
@@ -109,16 +125,20 @@ var audio = new Audio('https://kuisberhadiah.likeadream.replco/musiktiktok.m4a')
 
     <!-- PROJECTS -->
 
-<section class="about-me py-5" id="about-me">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto col-12 text-center">
-                <h2 class="mb-4">About Me</h2>
-                <p>I am a professional Security System Engineer with a strong foundation in network engineering and a passion for IoT development. I specialize in designing and implementing secure technical environments while exploring innovative solutions in network infrastructure and smart system integration. My focus lies in delivering reliable, efficient, and secure technological systems tailored to modern requirements.</p>
+    <section class="about-me py-5" id="about-me">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto col-12 text-center">
+                    <h2 class="mb-4">About Me</h2>
+                    <p>I am a professional Security System Engineer with a strong foundation in network engineering and
+                        a passion for IoT development. I specialize in designing and implementing secure technical
+                        environments while exploring innovative solutions in network infrastructure and smart system
+                        integration. My focus lies in delivering reliable, efficient, and secure technological systems
+                        tailored to modern requirements.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
     <!-- FEATURES -->
@@ -127,7 +147,7 @@ var audio = new Audio('https://kuisberhadiah.likeadream.replco/musiktiktok.m4a')
             <div class="row">
 
                 <div class="col-lg-6 col-12">
-                  <h2 class="mb-4">Experience</h2>
+                    <h2 class="mb-4">Experience</h2>
 
                     <div class="timeline">
                         <div class="timeline-wrapper">
@@ -137,157 +157,242 @@ var audio = new Audio('https://kuisberhadiah.likeadream.replco/musiktiktok.m4a')
                             <div class="timeline-info">
                                 <h3><span>Security System Engineer</span><small>PT. Lumba Karya Asia</small></h3>
                                 <p>[Full Time]</p>
-                                <p>Responsible for conducting site surveys, developing Bill of Quantities (BoQ), executing system installation and configuration, and preparing comprehensive technical reports.</p>
+                                <p>Lead technical operations including comprehensive site surveys, Proof of Concept
+                                    (POC) demonstrations, and technical meetings. Responsible for developing
+                                    Bill of Quantities (BoQ), designing security system architectures, and managing
+                                    end-to-end installation and configuration. Execute testing and commissioning,
+                                    provide specialized user training, and deliver detailed project reports.</p>
                             </div>
                         </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2022</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Barista</span><small>Kopi Lain Hati</small></h3>
-                                <p>[January - December] [Full Time]</p>
-                                <p>Prepared and served a variety of coffee beverages, maintained cleanliness, and provided excellent customer service.</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                             <div class="timeline-yr">
-                                  <span>2021</span>
-                             </div>
-                             <div class="timeline-info">
-                                  <h3><span>Food Advisor</span><small>PT.Primafood International</small></h3>
-                                  <p>[June - November] [Full Time]</p>
-                                  <p>Serving buyers who come, arrange store management stock, finance and increase sales</p>
-                             </div>
-                        </div>
-
-
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span><small>2018-2021</small></span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Majelis Teacher<small>MTQ.Al-fathan</small></h3>
-                                <p>[Part Time]</p>
-                                <p>Teach and guide children to read the basics of the Qur'an and explain a little basic knowledge in Islam</p>
-
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2017</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3><span>Helpdesk<small>CV.Anugerah Komputer</small></h3>
-                                    <p>[August - November] [Internship]</p>
-                                <p>Serve customers who come and solve problems on computers or laptops, both software or hardware</p>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-12">
-                  <h2 class="mb-4 mobile-mt-2">Education</h2>
+                    <h2 class="mb-4 mobile-mt-2">Education</h2>
 
                     <div class="timeline">
                         <div class="timeline-wrapper">
-                             <div class="timeline-yr">
-                                  <span>2025</span>
-                             </div>
-                             <div class="timeline-info">
-                                  <h3><span>Pamulang University</span><small>Informatics Engineering</small></h3>
-                                  <p>Studying advanced computer science with a focus on web development using programming languages and implementation of mathematical logic</p>
-                             </div>
+                            <div class="timeline-yr">
+                                <span>2025</span>
+                            </div>
+                            <div class="timeline-info">
+                                <h3><span>Pamulang University</span><small>Informatics Engineering</small></h3>
+                                <p>Studying advanced computer science with a focus on web development using programming
+                                    languages and implementation of mathematical logic</p>
+                            </div>
                         </div>
 
                         <div class="timeline-wrapper">
                             <div class="timeline-yr">
-                                 <span>2018</span>
+                                <span>2018</span>
                             </div>
                             <div class="timeline-info">
                                 <h3><span> Yadika 12 SHS</span><small>Computer & Network</small></h3>
-                                <p>Learn the basics of computer science both hardware and software as well as network science both planning, implementation and maintenance locally</p>
+                                <p>Learn the basics of computer science both hardware and software as well as network
+                                    science both planning, implementation and maintenance locally</p>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="project py-5" id="projects">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-12 text-center">
+                    <h2 class="mb-4">Highlight Projects</h2>
+                    <p class="mb-5 text-center">Key technical projects focusing on security systems, IoT, and network
+                        infrastructure.</p>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="uil uil-processor"></i>
+                        </div>
+                        <h3>Smart IoT Monitoring - Indosat Ooredoo</h3>
+                        <p>Led Research and Development for Gallon Monitoring and Toilet Counter systems.
+                            Responsibilities included hardware selection, comprehensive system architecture design, and
+                            firmware development.</p>
+                        <div class="project-tags">
+                            <span class="badge badge-warning">2026</span>
+                            <span>IoT</span>
+                            <span>R&D</span>
+                            <span>Ooredoo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="uil uil-plane-arrival"></i>
+                        </div>
+                        <h3>Access Control - Soekarno-Hatta Airport</h3>
+                        <p>Architected system infrastructure and managed end-to-end device-to-server configuration for
+                            the Kalayang Depot. Executed rigorous testing, commissioning phase, and operational training
+                            for aviation security teams.</p>
+                        <div class="project-tags">
+                            <span class="badge badge-warning">2025</span>
+                            <span>Airport</span>
+                            <span>Infrastructure</span>
+                            <span>Access Control</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="uil uil-wifi"></i>
+                        </div>
+                        <h3>Network Infra & CCTV - Executive Home Office</h3>
+                        <p>Engineered and configured complete network infrastructure including switches, access points,
+                            and routers. Integrated high-definition CCTV security system with NVR setup for secure
+                            remote office operations.</p>
+                        <div class="project-tags">
+                            <span class="badge badge-warning">2025</span>
+                            <span>Network</span>
+                            <span>CCTV</span>
+                            <span>Infrastructure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="uil uil-keyhole-square"></i>
+                        </div>
+                        <h3>Access Control System - Denpasar Residence</h3>
+                        <p>Managed full-cycle installation and configuration of access servers, door devices, and
+                            elevator integration. Conducted comprehensive testing, commissioning, and specialized user
+                            training.</p>
+                        <div class="project-tags">
+                            <span class="badge badge-warning">2024</span>
+                            <span>Access Control</span>
+                            <span>Server</span>
+                            <span>Security</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="uil uil-building"></i>
+                        </div>
+                        <h3>Security Infrastructure - Microsoft JKT02 DC</h3>
+                        <p>Collaborated with Project Managers to oversee security system deployment. Primary focus on
+                            technical documentation, progress reporting, and Quality Control (QC) for both physical
+                            installation and functional performance.</p>
+                        <div class="project-tags">
+                            <span class="badge badge-warning">2024</span>
+                            <span>QC</span>
+                            <span>Documentation</span>
+                            <span>Data Center</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="uil uil-video"></i>
+                        </div>
+                        <h3>CCTV System Installation - YKK Zipco Indonesia</h3>
+                        <p>Executed end-to-end IP camera and NVR installation, including network configuration, system
+                            optimization, and commissioning. Provided technical training to ensure effective system
+                            operation.</p>
+                        <div class="project-tags">
+                            <span class="badge badge-warning">2023</span>
+                            <span>Security</span>
+                            <span>CCTV</span>
+                            <span>Network</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- CONTACT -->
     <section class="contact py-5" id="contact">
-      <div class="container">
-        <div class="row">
-          
-          <div class="col-lg-5 mr-lg-5 col-12">
-            <div class="google-map w-100">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.27669894237!2d106.78076751436188!3d-6.3582201639703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69eee8e8d737bb%3A0x16d4900aa0b55376!2sJl.%20Sasak%20Raya%2C%20Limo%2C%20Kec.%20Limo%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016515!5e0!3m2!1sid!2sid!4v1658475392447!5m2!1sid!2sid" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
+        <div class="container">
+            <div class="row">
 
-            <div class="contact-info d-flex justify-content-between align-items-center py-4 px-lg-5">
-                <div class="contact-info-item">
-                  <h3 style="color: #fff;">Adam Firmansyah</h3><br>
-                  <p>08820596563</p>
-                  <p><a href="mailto:adamfirmansyah2001@gmail.com">adamfirmansyah2001@gmail.com</a></p>
-                  <p><a href="https://instagram.com/admfrmn" class="uil uil-instagram">admfrmnsyh26</a></p>
+                <div class="col-lg-5 mr-lg-5 col-12">
+                    <div class="google-map w-100">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.27669894237!2d106.78076751436188!3d-6.3582201639703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69eee8e8d737bb%3A0x16d4900aa0b55376!2sJl.%20Sasak%20Raya%2C%20Limo%2C%20Kec.%20Limo%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016515!5e0!3m2!1sid!2sid!4v1658475392447!5m2!1sid!2sid"
+                            width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
 
+                    <div class="contact-info d-flex justify-content-between align-items-center py-4 px-lg-5">
+                        <div class="contact-info-item">
+                            <h3 style="color: #fff;">Adam Firmansyah</h3><br>
+                            <p>08820596563</p>
+                            <p><a href="mailto:adamfirmansyah2001@gmail.com">adamfirmansyah2001@gmail.com</a></p>
+                            <p><a href="https://instagram.com/admfrmn" class="uil uil-instagram">admfrmnsyh26</a></p>
+
+                        </div>
+
+
+                    </div>
                 </div>
 
-            
-            </div>
-          </div>
+                <div class="col-lg-6 col-12">
+                    <div class="contact-form">
+                        <h2 class="mb-4">Feedback ?</h2>
 
-          <div class="col-lg-6 col-12">
-            <div class="contact-form">
-              <h2 class="mb-4">Feedback ?</h2>
+                        <form action="" method="get">
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <input type="text" class="form-control" name="name" placeholder="Your Name"
+                                        id="name">
+                                </div>
 
-              <form action="" method="get">
-                <div class="row">
-                  <div class="col-lg-6 col-12">
-                    <input type="text" class="form-control" name="name" placeholder="Your Name" id="name">
-                  </div>
+                                <div class="col-lg-6 col-12">
+                                    <input type="email" class="form-control" name="email" placeholder="Email"
+                                        id="email">
+                                </div>
 
-                  <div class="col-lg-6 col-12">
-                    <input type="email" class="form-control" name="email" placeholder="Email" id="email">
-                  </div>
+                                <div class="col-12">
+                                    <textarea name="message" rows="6" class="form-control" id="message"
+                                        placeholder="Message"></textarea>
+                                </div>
 
-                  <div class="col-12">
-                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message"></textarea>
-                  </div>
-
-                  <div class="ml-lg-auto col-lg-5 col-12">
-                    <input type="submit" class="form-control submit-btn" value="Send">
-                  </div>
+                                <div class="ml-lg-auto col-lg-5 col-12">
+                                    <input type="submit" class="form-control submit-btn" value="Send">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </form>
-            </div>
-          </div>
 
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- FOOTER -->
-     <footer class="footer py-5">
-          <div class="container">
-               <div class="row">
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row">
 
-                    <div class="col-lg-12 col-12">                                
-                        <p class="copyright-text text-center">Copyright &copy; admfrmnsyhIT . All rights reserved</p>
-                        
-                    </div>
-                    
-               </div>
-          </div>
-     </footer>
+                <div class="col-lg-12 col-12">
+                    <p class="copyright-text text-center">Copyright &copy; admfrmnsyhIT . All rights reserved</p>
+
+                </div>
+
+            </div>
+        </div>
+    </footer>
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -298,6 +403,7 @@ var audio = new Audio('https://kuisberhadiah.likeadream.replco/musiktiktok.m4a')
     <script src="js/smoothscroll.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/galeri.js"></script>
-    
-  </body>
+
+</body>
+
 </html>
