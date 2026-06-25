@@ -758,11 +758,11 @@ strong {
 .project-tags span {
   background: transparent;
   color: #565449;
-  border: 1px solid #565449;
+  border: 1.5px solid #565449;
   padding: 4px 12px;
   border-radius: 50px;
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 500;
   margin-right: 5px;
   letter-spacing: 0.2px;
 }
