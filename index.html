@@ -25,14 +25,7 @@
 
 <body>
 
-    <script>
-        function play() {//Link Audio Bisa Diganti
-            var audio = new Audio('https://kuisberhadiah.likeadream.replco/musiktiktok.m4a'); audio.play(); audio.loop = true; audio.addEventListener('ended', function () { this.currentTime = 0; this.play(); }, false);
-        }
-
-        //Pesan WhatsApp
-
-    </script>
+    <!-- Audio autoplay script removed for better UX -->
 
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
@@ -88,7 +81,7 @@
                 <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center order-2 order-lg-1">
                     <div class="about-text text-center text-lg-left w-100">
                         <h1 class="animated animated-text">
-                            <span class="mr-2">Hello, i'm</span>
+                            <span class="mr-2">Hello, I'm</span>
                             <div class="animated-info">
                                 <span class="animated-item">
                                     <h3>Adam Firmansyah</h3>
@@ -133,11 +126,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto col-12 text-center">
                     <h2 class="mb-4">About Me</h2>
-                    <p>I am a professional Security System Engineer with a strong foundation in network engineering and
-                        a passion for IoT development. I specialize in designing and implementing secure technical
-                        environments while exploring innovative solutions in network infrastructure and smart system
-                        integration. My focus lies in delivering reliable, efficient, and secure technological systems
-                        tailored to modern requirements.</p>
+                    <p>I am a Security System Engineer with a strong background in network infrastructure and IoT development. I build and deploy reliable, end-to-end security systems—from CCTV and access controls to smart monitoring solutions.</p>
                 </div>
             </div>
         </div>
@@ -180,8 +169,7 @@
                             </div>
                             <div class="timeline-info">
                                 <h3><span>Pamulang University</span><small>Informatics Engineering</small></h3>
-                                <p>Studying advanced computer science with a focus on web development using programming
-                                    languages and implementation of mathematical logic</p>
+                                <p>Focusing on computer science fundamentals and web development.</p>
                             </div>
                         </div>
 
@@ -191,8 +179,7 @@
                             </div>
                             <div class="timeline-info">
                                 <h3><span> Yadika 12 SHS</span><small>Computer & Network</small></h3>
-                                <p>Learn the basics of computer science both hardware and software as well as network
-                                    science both planning, implementation and maintenance locally</p>
+                                <p>Focused on local network planning, hardware maintenance, and IT infrastructure.</p>
                             </div>
                         </div>
 
@@ -450,7 +437,7 @@
                     <div class="contact-info d-flex justify-content-between align-items-center py-4 px-lg-5">
                         <div class="contact-info-item">
                             <h3 style="color: #fff;">Adam Firmansyah</h3><br>
-                            <p>08820596563</p>
+                            <p><a href="tel:+628820596563">+62 882-0596-563</a></p>
                             <p><a href="mailto:adamfirmansyah2001@gmail.com">adamfirmansyah2001@gmail.com</a></p>
                             <p><a href="https://instagram.com/admfrmn" class="uil uil-instagram">admfrmnsyh26</a></p>
 
@@ -462,9 +449,10 @@
 
                 <div class="col-lg-6 col-12">
                     <div class="contact-form">
-                        <h2 class="mb-4">Feedback ?</h2>
+                        <h2 class="mb-4">Let's Connect</h2>
 
-                        <form action="mailto:adamfirmansyah2001@gmail.com" method="post" enctype="text/plain">
+                        <!-- Ganti URL action di bawah dengan endpoint Formspree milikmu (misal: https://formspree.io/f/xyz) -->
+                        <form action="https://formspree.io/f/your_formspree_id" method="POST">
                             <div class="row">
                                 <div class="col-lg-6 col-12">
                                     <input type="text" class="form-control" name="Name" placeholder="Your Name"
