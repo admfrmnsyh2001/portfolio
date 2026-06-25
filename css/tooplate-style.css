@@ -741,6 +741,10 @@ strong {
   margin-bottom: 20px;
 }
 
+.skills .project-icon {
+  background: #474559;
+}
+
 .project-card h3 {
   font-size: 22px;
   margin-bottom: 15px;
