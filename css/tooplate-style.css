@@ -1382,3 +1382,18 @@ body.splash-active {
   0% { stroke-dashoffset: 1200; }
   100% { stroke-dashoffset: 0; }
 }
+.controller img {
+  width: 200px; /* Enlarge controller */
+}
+
+.fingerprint img {
+  border: none !important;
+  box-shadow: none !important;
+  width: 100px;
+  background: transparent;
+}
+.fingerprint:hover img {
+  border: none !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 15px rgba(0,212,255,0.8));
+}
