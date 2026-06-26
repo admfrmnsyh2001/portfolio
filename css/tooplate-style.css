@@ -1112,3 +1112,273 @@ body:not(.dark-mode) .contact-form .form-control {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* â”€â”€ SECURITY SPLASH SCREEN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+body.splash-active {
+  overflow: hidden !important;
+}
+
+#security-splash {
+  position: fixed;
+  inset: 0;
+  background-color: #060b18;
+  background-image: 
+    linear-gradient(rgba(0,212,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  z-index: 9999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1.5s ease, visibility 1.5s ease;
+  font-family: "Urbanist", sans-serif;
+}
+
+#security-splash.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.topology-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 0;
+}
+
+.device {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.device img {
+  width: 120px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border: 2px solid rgba(0,212,255,0.2);
+  transition: all 0.3s ease;
+}
+
+/* Controller (Top) */
+.controller {
+  margin-top: 20px;
+}
+
+.indicator-light {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff3333;
+  box-shadow: 0 0 10px #ff3333;
+  transition: all 0.3s ease;
+}
+
+.processing .indicator-light {
+  background: #ffb700;
+  box-shadow: 0 0 15px #ffb700;
+  animation: blink 0.2s infinite alternate;
+}
+
+.granted .indicator-light {
+  background: #00ff88;
+  box-shadow: 0 0 20px #00ff88;
+  animation: none;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.2; }
+}
+
+/* Door (Middle) */
+.door-wrapper {
+  width: 180px;
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+  border: 4px solid #1a2b4c;
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  background: #000;
+}
+
+.door-panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-image: url('../images/topology/door.png');
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 2;
+}
+
+.door-left {
+  left: 0;
+  background-position: left center;
+  border-right: 1px solid rgba(0,212,255,0.3);
+}
+
+.door-right {
+  right: 0;
+  background-position: right center;
+  border-left: 1px solid rgba(0,212,255,0.3);
+}
+
+.granted .door-left { transform: translateX(-100%); }
+.granted .door-right { transform: translateX(100%); }
+
+.granted-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #00ff88;
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+  opacity: 0;
+  transition: opacity 1s ease 0.5s;
+  z-index: 1;
+}
+
+.granted .granted-text { opacity: 1; }
+
+/* Fingerprint (Bottom) */
+.fingerprint {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.fingerprint:hover img {
+  border-color: rgba(0,212,255,0.6);
+  box-shadow: 0 10px 40px rgba(0,212,255,0.2);
+}
+
+.scan-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 80px;
+  background: radial-gradient(ellipse, rgba(0,212,255,0.4) 0%, transparent 60%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fingerprint:hover .scan-overlay {
+  opacity: 1;
+  animation: scan-pulse 2s infinite;
+}
+
+.scanning .scan-overlay {
+  opacity: 1;
+  background: radial-gradient(ellipse, rgba(0,255,136,0.5) 0%, transparent 70%);
+  animation: scan-line 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes scan-pulse {
+  0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes scan-line {
+  0% { transform: translate(-50%, -100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translate(-50%, 0%); opacity: 0; }
+}
+
+.instruction {
+  position: absolute;
+  bottom: -35px;
+  color: var(--accent-cyan);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0,212,255,0.5);
+  animation: pulse-text 2s infinite;
+}
+
+.scanning .instruction, .processing .instruction, .granted .instruction {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes pulse-text {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* SVG Cables */
+.topology-cables {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cable-base {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.cable-data {
+  fill: none;
+  stroke: #00d4ff;
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px #00d4ff);
+  stroke-dasharray: 1200; /* Approx path length */
+  stroke-dashoffset: 1200;
+}
+
+/* Animations injected by JS */
+.scanning .data-left, .scanning .data-right {
+  animation: flow-up 1.5s linear forwards;
+}
+
+.processing .cable-data {
+  stroke: #ffb700;
+  filter: drop-shadow(0 0 8px #ffb700);
+}
+
+.granted .data-down {
+  stroke: #00ff88;
+  filter: drop-shadow(0 0 10px #00ff88);
+  animation: flow-down 0.5s linear forwards;
+}
+
+@keyframes flow-up {
+  0% { stroke-dashoffset: 1200; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes flow-down {
+  0% { stroke-dashoffset: 1200; }
+  100% { stroke-dashoffset: 0; }
+}
