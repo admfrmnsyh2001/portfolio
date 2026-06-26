@@ -622,6 +622,15 @@ strong {
   section.about .about-text {
     margin-top: 55vw;
   }
+
+  /* Paksa teks jadi terang karena bg section sudah gelap */
+  section.about h1,
+  section.about h2,
+  section.about h3,
+  section.about p,
+  section.about .animated-item {
+    color: #FFFBF4;
+  }
 }
 
 @media (max-width: 767px) {
