@@ -1,13 +1,13 @@
-/*
+﻿/*
 ================================================
-  ADAM FIRMANSYAH — PORTFOLIO
+  ADAM FIRMANSYAH â€” PORTFOLIO
   Modern UI/UX Redesign: Glassmorphism + Premium Dark Theme
 ================================================
 */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 
-/* ── CSS Custom Properties ───────────────────── */
+/* â”€â”€ CSS Custom Properties â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root {
   --bg-primary:    #060b18;
   --bg-secondary:  #0d1526;
@@ -37,13 +37,13 @@ body:not(.dark-mode) {
   --accent-glow:   rgba(0, 145, 178, 0.12);
 }
 
-/* ── Base Reset ──────────────────────────────── */
+/* â”€â”€ Base Reset â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 *, *::before, *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Urbanist", sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   padding-top: var(--navbar-h);
@@ -89,7 +89,7 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Outfit", sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-weight: 700;
   letter-spacing: -0.5px;
   color: var(--text-primary);
@@ -99,7 +99,7 @@ h1 { font-size: 3em; margin: 20px 0; font-weight: 800; }
 h2 { font-size: 2.4em; }
 h3 { font-size: 1.3em; }
 
-/* ── Scrollbar ───────────────────────────────── */
+/* â”€â”€ Scrollbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
 ::-webkit-scrollbar-thumb {
@@ -107,7 +107,7 @@ h3 { font-size: 1.3em; }
   border-radius: 99px;
 }
 
-/* ── Section Reveal Animations ───────────────── */
+/* â”€â”€ Section Reveal Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -122,7 +122,7 @@ h3 { font-size: 1.3em; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
-/* ── Section Layout ──────────────────────────── */
+/* â”€â”€ Section Layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .full-screen { padding: 8rem 0; }
 
 section {
@@ -146,7 +146,7 @@ section {
   margin-top: 10px;
 }
 
-/* ── Navbar ──────────────────────────────────── */
+/* â”€â”€ Navbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .navbar {
   display: flex;
   position: fixed;
@@ -175,7 +175,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
 }
 
 .navbar-brand {
-  font-family: "Outfit", sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-weight: 800;
   font-size: 1.4rem;
   display: flex;
@@ -187,7 +187,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
 
 .navbar-brand a {
   color: var(--text-primary);
-  font-family: "Outfit", sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-weight: 800;
 }
 
@@ -310,7 +310,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
   left: 16px;
 }
 
-/* ── Hero / About Section ────────────────────── */
+/* â”€â”€ Hero / About Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .about {
   min-height: calc(100vh - var(--navbar-h));
   display: flex;
@@ -386,7 +386,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
 
 .animated-item {
   font-size: 36px;
-  font-family: "Outfit", sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-weight: 800;
   line-height: 1.15;
   display: block;
@@ -425,7 +425,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
 }
 
 .custom-btn {
-  font-family: "Inter", sans-serif;
+  font-family: "Urbanist", sans-serif;
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.3px;
@@ -479,7 +479,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
   box-shadow: 0 10px 30px rgba(0, 212, 255, 0.35);
 }
 
-/* ── Hero Photo ──────────────────────────────── */
+/* â”€â”€ Hero Photo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .about-image {
   display: flex;
   justify-content: center;
@@ -526,7 +526,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
   50%       { transform: translateY(-12px); }
 }
 
-/* ── About Me Section ────────────────────────── */
+/* â”€â”€ About Me Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .about-me {
   background: var(--bg-secondary);
   padding: 80px 0;
@@ -546,7 +546,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
   font-weight: 800;
 }
 
-/* ── Glassmorphism Card ──────────────────────── */
+/* â”€â”€ Glassmorphism Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .glass-card {
   background: var(--bg-card);
   backdrop-filter: blur(20px) saturate(160%);
@@ -556,7 +556,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
   transition: var(--transition);
 }
 
-/* ── Resume / Timeline ───────────────────────── */
+/* â”€â”€ Resume / Timeline â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .resume {
   padding: 80px 0;
   position: relative;
@@ -638,7 +638,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
   text-align: left;
 }
 
-/* ── Skills Section ──────────────────────────── */
+/* â”€â”€ Skills Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .skills {
   padding: 80px 0;
   background: var(--bg-secondary);
@@ -646,7 +646,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
   z-index: 1;
 }
 
-/* ── Project Cards ───────────────────────────── */
+/* â”€â”€ Project Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .project-card {
   background: var(--bg-card);
   backdrop-filter: blur(20px) saturate(150%);
@@ -751,7 +751,7 @@ body:not(.dark-mode) .navbar[class*="headroom--not-top"] {
   letter-spacing: 0.3px;
 }
 
-/* ── Contact Section ─────────────────────────── */
+/* â”€â”€ Contact Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .contact {
   padding: 80px 0;
   position: relative;
@@ -850,7 +850,7 @@ body:not(.dark-mode) .contact-form .form-control {
   box-shadow: 0 12px 30px rgba(0, 212, 255, 0.3);
 }
 
-/* ── Footer ──────────────────────────────────── */
+/* â”€â”€ Footer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .footer {
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-glass);
@@ -867,7 +867,7 @@ body:not(.dark-mode) .contact-form .form-control {
   letter-spacing: 0.2px;
 }
 
-/* ── Owl Carousel ────────────────────────────── */
+/* â”€â”€ Owl Carousel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .owl-carousel .owl-nav span { display: none; }
 
 .owl-carousel .owl-nav .owl-prev::before,
@@ -917,7 +917,7 @@ body:not(.dark-mode) .contact-form .form-control {
   }
 }
 
-/* ── Social Links ────────────────────────────── */
+/* â”€â”€ Social Links â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .social-links .uil {
   color: var(--text-secondary);
   font-size: 22px;
@@ -931,9 +931,9 @@ body:not(.dark-mode) .contact-form .form-control {
   transform: translateX(4px);
 }
 
-/* ═══════════════════════════════════════════
-   RESPONSIVE — Tablet (≤ 991px)
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RESPONSIVE â€” Tablet (â‰¤ 991px)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 @media (max-width: 991px) {
   .full-screen {
     padding-top: 4rem;
@@ -949,7 +949,7 @@ body:not(.dark-mode) .contact-form .form-control {
     padding: 20px 24px;
   }
 
-  /* ── MOBILE HERO: Side-by-side stacked, photo NOT full-cover ── */
+  /* â”€â”€ MOBILE HERO: Side-by-side stacked, photo NOT full-cover â”€â”€ */
   section.about {
     min-height: auto;
     padding: 3rem 0 4rem;
@@ -1025,9 +1025,9 @@ body:not(.dark-mode) .contact-form .form-control {
   }
 }
 
-/* ═══════════════════════════════════════════
-   RESPONSIVE — Mobile (≤ 767px)
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RESPONSIVE â€” Mobile (â‰¤ 767px)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 @media (max-width: 767px) {
   h1 { font-size: 2.2em; }
   h2 { font-size: 1.9em; }
@@ -1037,9 +1037,9 @@ body:not(.dark-mode) .contact-form .form-control {
   .navbar-expand-sm .navbar-nav .nav-link { padding: 6px 20px; }
 }
 
-/* ═══════════════════════════════════════════
-   RESPONSIVE — Small Mobile (≤ 580px)
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RESPONSIVE â€” Small Mobile (â‰¤ 580px)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 @media (max-width: 580px) {
   .about-image img {
     width: 44%;
@@ -1071,9 +1071,9 @@ body:not(.dark-mode) .contact-form .form-control {
   .contact-form { padding: 24px 20px; }
 }
 
-/* ═══════════════════════════════════════════
-   RESPONSIVE — Extra Small (≤ 380px)
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RESPONSIVE â€” Extra Small (â‰¤ 380px)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 @media (max-width: 380px) {
   .about-image img {
     width: 40%;
@@ -1092,9 +1092,9 @@ body:not(.dark-mode) .contact-form .form-control {
   }
 }
 
-/* ═══════════════════════════════════════════
-   DESKTOP LARGE (≥ 992px)
-═══════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   DESKTOP LARGE (â‰¥ 992px)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 @media (min-width: 992px) {
   .about-image img {
     width: 78%;
@@ -1104,7 +1104,7 @@ body:not(.dark-mode) .contact-form .form-control {
   .about-text h1 { font-size: 3.6em; }
 }
 
-/* ── Utility ──────────────────────────────────── */
+/* â”€â”€ Utility â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .text-accent { color: var(--accent-cyan) !important; }
 .gradient-text {
   background: linear-gradient(135deg, var(--accent-cyan), #60a5fa);
