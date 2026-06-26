@@ -1397,3 +1397,18 @@ body.splash-active {
   box-shadow: none !important;
   filter: drop-shadow(0 0 15px rgba(0,212,255,0.8));
 }
+@media (max-width: 991px) {
+  .topology-container {
+    transform: scale(1.3);
+  }
+}
+@media (max-width: 580px) {
+  .topology-container {
+    transform: scale(1.25);
+  }
+}
+@media (max-height: 700px) {
+  .topology-container {
+    transform: scale(1.1);
+  }
+}
