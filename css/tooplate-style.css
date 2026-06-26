@@ -588,6 +588,34 @@ strong {
   .contact-info {
     padding: 0 2rem;
   }
+
+  /* === Mobile: Photo as Background === */
+  section.about {
+    position: relative;
+    overflow: hidden;
+  }
+
+  section.about::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../images/undraw/adam.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.35;
+    z-index: 0;
+  }
+
+  section.about .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Sembunyikan div foto agar tidak muncul dua kali */
+  section.about .about-image {
+    display: none;
+  }
 }
 
 @media (max-width: 767px) {
