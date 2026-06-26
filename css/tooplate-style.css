@@ -1412,3 +1412,23 @@ body.splash-active {
     transform: scale(1.1);
   }
 }
+.device img, .controller img, .fingerprint img {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.door-wrapper {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.door-left {
+  border-right: none !important;
+}
+.door-right {
+  border-left: none !important;
+}
