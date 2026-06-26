@@ -31,30 +31,62 @@
 
     <!-- SECURITY SPLASH SCREEN -->
     <div id="security-splash" class="active">
+
+        <!-- Ambient atmosphere layers -->
+        <div class="splash-noise"></div>
+        <div class="splash-scanlines"></div>
+        <div class="splash-vignette"></div>
+        <div class="splash-particles">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- HUD frame overlay -->
+        <div class="hud-frame">
+            <span class="hud-corner tl"></span>
+            <span class="hud-corner tr"></span>
+            <span class="hud-corner bl"></span>
+            <span class="hud-corner br"></span>
+        </div>
+        <div class="hud-top">
+            <span class="hud-tag"><i class="status-dot"></i> SECURENET &middot; ACCESS NODE A-12</span>
+            <span class="hud-clock" id="hud-clock">--:--:--</span>
+        </div>
+
         <div class="topology-container">
-            
+
             <!-- SVG Cables (Background) -->
             <svg class="topology-cables" viewBox="0 0 400 800" preserveAspectRatio="none">
                 <!-- Static base cables -->
                 <path class="cable-base" d="M 200,650 L 200,600 L 50,600 L 50,200 L 200,200 L 200,150" />
                 <path class="cable-base" d="M 200,650 L 200,600 L 350,600 L 350,200 L 200,200 L 200,150" />
-                
-                <!-- Animated data flow cables -->
+
+                <!-- Energized cable glow (lights up the whole line) -->
                 <path class="cable-data data-left" d="M 200,650 L 200,600 L 50,600 L 50,200 L 200,200 L 200,150" />
                 <path class="cable-data data-right" d="M 200,650 L 200,600 L 350,600 L 350,200 L 200,200 L 200,150" />
-                
-                <!-- Animated signal down to door -->
+
+                <!-- Travelling data packets (moving pulses along the cable) -->
+                <path class="cable-packet packet-left" d="M 200,650 L 200,600 L 50,600 L 50,200 L 200,200 L 200,150" />
+                <path class="cable-packet packet-right" d="M 200,650 L 200,600 L 350,600 L 350,200 L 200,200 L 200,150" />
+
+                <!-- Signal down to door -->
                 <path class="cable-data data-down" d="M 200,150 L 200,400" />
+                <path class="cable-packet packet-down" d="M 200,150 L 200,400" />
             </svg>
 
             <!-- Controller at top -->
             <div class="device controller" id="splash-controller">
                 <img src="images/topology/controller.png" alt="Controller">
                 <div class="indicator-light"></div>
+                <div class="controller-hud" id="controller-hud">
+                    <span class="hud-readout" id="controller-readout">&#9679; STANDBY</span>
+                </div>
             </div>
 
             <!-- Door at center -->
             <div class="device door-wrapper" id="splash-door">
+                <div class="door-light"></div>
                 <div class="granted-text">ACCESS GRANTED</div>
                 <div class="door-panel door-left"></div>
                 <div class="door-panel door-right"></div>
@@ -62,9 +94,14 @@
 
             <!-- Fingerprint Reader at bottom -->
             <div class="device fingerprint" id="splash-fingerprint">
-                <img src="images/topology/fingerprint.png" alt="Fingerprint Reader">
-                <div class="scan-overlay"></div>
+                <div class="fp-wrap">
+                    <img src="images/topology/fingerprint.png" alt="Fingerprint Reader">
+                    <div class="fp-scanline"></div>
+                    <div class="fp-flash"></div>
+                </div>
+                <div class="fp-progress"><span class="fp-bar"></span></div>
                 <div class="instruction">TAP TO UNLOCK</div>
+                <div class="fp-status" id="fp-status"></div>
             </div>
 
         </div>
