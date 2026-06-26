@@ -1002,14 +1002,15 @@ body:not(.dark-mode) .contact-form .form-control {
   }
 
   .animated-info {
-    min-width: 260px;
+    min-width: 100%;
     text-align: center;
-    left: 50%;
-    transform: translateX(-50%);
+    display: block;
+    margin: 0 auto;
   }
 
   .animated-item {
     text-align: center;
+    width: 100%;
   }
 
   .navbar-collapse {
