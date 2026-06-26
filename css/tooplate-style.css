@@ -616,6 +616,11 @@ strong {
   section.about .about-image {
     display: none;
   }
+
+  /* Geser teks ke bawah agar tidak menutupi wajah */
+  section.about .about-text {
+    margin-top: 55vw;
+  }
 }
 
 @media (max-width: 767px) {
