@@ -1,4 +1,4 @@
-﻿/*
+/*
 ================================================
   ADAM FIRMANSYAH â€” PORTFOLIO
   Modern UI/UX Redesign: Glassmorphism + Premium Dark Theme
@@ -9,16 +9,16 @@
 
 /* â”€â”€ CSS Custom Properties â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root {
-  --bg-primary:    #060b18;
-  --bg-secondary:  #0d1526;
+  --bg-primary:    #000000;
+  --bg-secondary:  #233D4D;
   --bg-card:       rgba(255, 255, 255, 0.04);
   --border-glass:  rgba(255, 255, 255, 0.08);
-  --accent-cyan:   #00d4ff;
-  --accent-teal:   #0891b2;
-  --accent-glow:   rgba(0, 212, 255, 0.15);
-  --text-primary:  #f0f6ff;
-  --text-secondary: #8ba3c7;
-  --text-muted:    #4a6080;
+  --accent-cyan:   #FE7F2D;
+  --accent-teal:   #FE7F2D;
+  --accent-glow:   rgba(254, 127, 45, 0.15);
+  --text-primary:  #EAECF0;
+  --text-secondary: #c0c8d1;
+  --text-muted:    #8ba3c7;
   --navbar-h:      72px;
   --radius-card:   20px;
   --radius-pill:   999px;
@@ -27,14 +27,14 @@
 
 /* Light mode overrides */
 body:not(.dark-mode) {
-  --bg-primary:    #f5f8ff;
-  --bg-secondary:  #eef2fc;
+  --bg-primary:    #EAECF0;
+  --bg-secondary:  #ffffff;
   --bg-card:       rgba(255, 255, 255, 0.85);
   --border-glass:  rgba(0, 0, 0, 0.07);
-  --text-primary:  #0f1c2e;
-  --text-secondary: #3a5280;
-  --text-muted:    #8ba3c7;
-  --accent-glow:   rgba(0, 145, 178, 0.12);
+  --text-primary:  #000000;
+  --text-secondary: #233D4D;
+  --text-muted:    #4a6080;
+  --accent-glow:   rgba(254, 127, 45, 0.12);
 }
 
 /* â”€â”€ Base Reset â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
