@@ -11,15 +11,15 @@ $font-weight-bold: bold;
 $font-weight-normal: normal;
 $font-weight-light: 300;
 
-$h1-font-color: #3B2F2F;
-$h2-font-color: #5C4033;
-$h3-font-color: #7A5C50;
-$body-font-color: #6B5744;
-$text-white: #FAF3E0;
-$dark-mode-color: #2C1A0E;
-$main-color: #C8A97E;
-$border-color: #E8D5C0;
-$button-color: #5C4033;
+$h1-font-color: #000000;
+$h2-font-color: #233D4D;
+$h3-font-color: #484848;
+$body-font-color: #5b5b5b;
+$text-white: #ffffff;
+$dark-mode-color: #000000;
+$main-color: #FE7F2D;
+$border-color: #EAECF0;
+$button-color: #233D4D;
 
 $small-font-size: 14px;
 $link-font-size: 16px;
@@ -336,11 +336,11 @@ b, strong {
 	.navbar {
 		&[class*="headroom--not-top"] {
 			background: $dark-mode-color;
-			border-bottom: 1px solid #3a2010;
+			border-bottom: 1px solid #1f1f1f;
 	    }
 	}
 	.small-text {
-		background: #3B2F2F;
+		background: #0d0c15;
 		color: $text-white;
 	}
 	.feature-card .uil,
