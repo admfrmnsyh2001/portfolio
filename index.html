@@ -1,484 +1,1069 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Adam Firmansyah - Security System Engineer & IoT Enthusiast Portfolio">
-    <meta name="author" content="Adam Firmansyah">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adam Firmansyah | Security System Engineer</title>
+<meta name="description" content="Security System Engineer and IoT builder. CCTV, access control and network infrastructure.">
+<script>
+  /* Demo override: add ?motion=on to the URL to preview motion even if the OS asks for reduced motion. */
+  window.FORCE_MOTION = new URLSearchParams(location.search).get("motion") === "on";
+  /* Set the theme before first paint, otherwise the page flashes dark and then fades to light. */
+  document.documentElement.setAttribute("data-theme", window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+</script>
 
-    <title>Adam Firmansyah | Portfolio</title>
+<!-- Demo only: in production self-host Urbanist with @font-face + font-display: swap -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Phosphor icons (one family for the whole page, regular weight) -->
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Google Fonts Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+  /* ------------------------------------------------------------------
+     Tokens. One accent (brand orange), neutral base, two themes.
+     Shape rule: interactive = pill, containers = 20px, inputs = 12px.
+  ------------------------------------------------------------------ */
+  :root {
+    --accent: #FE7F2D;
+    --radius-card: 20px;
+    --radius-input: 12px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --max: 1240px;
+    --pad: clamp(20px, 5vw, 64px);
+  }
+  [data-theme="dark"] {
+    --bg: #0C0E11;
+    --surface: #13171C;
+    --surface-2: #1A2027;
+    --tint: #16222A;          /* brand teal, pushed to near-neutral */
+    --line: #242B33;
+    --fg: #ECEAE6;
+    --muted: #98A1AC;
+    --accent-ink: #FE7F2D;    /* accent used as text */
+    --on-accent: #0C0E11;
+    --glass: rgba(19, 23, 28, 0.72);
+  }
+  [data-theme="light"] {
+    --bg: #EEF0F2;
+    --surface: #FFFFFF;
+    --surface-2: #E4E8EC;
+    --tint: #DCE5EA;
+    --line: #D2D9DF;
+    --fg: #101418;
+    --muted: #4A5560;
+    --accent-ink: #B9480A;
+    --on-accent: #101418;
+    --glass: rgba(255, 255, 255, 0.78);
+  }
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/unicons.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: "Urbanist", system-ui, sans-serif;
+    font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color .4s var(--ease), color .4s var(--ease);
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  button, input, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--pad); }
 
-    <!--- gallery --->
-    <link rel="stylesheet" href="galeri.css">
-    <link rel="stylesheet" href="css/galeri-custom.css">
+  /* shared pieces */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; white-space: nowrap;
+    height: 52px; padding: 0 28px; border-radius: 999px;
+    font-weight: 700; font-size: 15px; letter-spacing: .2px; cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: transform .35s var(--ease), background-color .25s, border-color .25s, color .25s;
+  }
+  .btn:active { transform: translateY(1px) scale(.98); }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, white); }
+  .btn-ghost { border-color: var(--line); color: var(--fg); background: transparent; }
+  .btn-ghost:hover { border-color: var(--fg); }
+  .tag {
+    display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px;
+    font-size: 13px; font-weight: 600; color: var(--muted);
+    border: 1px solid var(--line); background: transparent; white-space: nowrap;
+  }
+  .tag.year { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 800; }
+  h1, h2, h3 { letter-spacing: -0.03em; line-height: 1.05; }
+  h2.section-title { font-size: clamp(2.2rem, 4.6vw, 3.8rem); font-weight: 800; max-width: 14ch; }
+  .lede { color: var(--muted); max-width: 52ch; }
 
-    <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="css/tooplate-style.css">
+  /* ------------------------------------------------------------------
+     Navigation: floating pill, one line, 56px
+  ------------------------------------------------------------------ */
+  .nav {
+    position: fixed; z-index: 50; top: 16px; left: 50%; transform: translateX(-50%);
+    width: min(760px, calc(100% - 24px)); height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 10px 0 22px; border-radius: 999px;
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid var(--line);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .brand { font-weight: 900; font-size: 20px; letter-spacing: -0.04em; }
+  .brand span { color: var(--accent-ink); }
+  .nav ul { display: flex; gap: 4px; list-style: none; }
+  .nav ul a { display: block; padding: 8px 16px; border-radius: 999px; font-weight: 600; font-size: 14px; color: var(--muted); transition: color .2s, background-color .2s; }
+  .nav ul a:hover { color: var(--fg); background: var(--surface-2); }
+  .theme-btn { width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line); background: transparent; display: grid; place-items: center; cursor: pointer; font-size: 18px; }
+  .theme-btn:hover { background: var(--surface-2); }
+  @media (max-width: 640px) { .nav ul a { padding: 8px 10px; font-size: 13px; } .nav ul li:nth-child(2) { display: none; } }
 
+  /* ------------------------------------------------------------------
+     Hero: asymmetric split
+  ------------------------------------------------------------------ */
+  .hero { position: relative; isolation: isolate; overflow: hidden; min-height: 100dvh; display: grid; align-items: center; padding-top: 96px; padding-bottom: 48px; }
+  /* Network mesh background (canvas, drawn by the script at the end of the page). */
+  #heroBg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; opacity: 0; transition: opacity 1.2s ease; }
+  #heroBg.on { opacity: 1; }
+  /* Keeps the copy readable over the mesh, and melts the mesh into the next section. */
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(to bottom, transparent 72%, var(--bg)),
+      radial-gradient(70% 85% at 22% 52%, color-mix(in srgb, var(--bg) 84%, transparent), transparent 74%);
+  }
+  .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 7fr 5fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+  .hero h1 { font-size: clamp(2.3rem, 4.6vw, 4.8rem); font-weight: 900; }
+  .hero h1 .line { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; white-space: nowrap; }
+  @media (max-width: 480px) { .hero h1 { font-size: 2.1rem; } }
+  .hero h1 .char { display: inline-block; will-change: transform; }
+  /* Rotating headline: every phrase sits in the same grid cell, so the box never changes height.
+     Without motion only the first phrase shows (the others are revealed by script). */
+  .hero h1 .rot { display: grid; }
+  .hero h1 .rot-item { grid-area: 1 / 1; display: block; }
+  .hero h1 .rot-item:not(:first-child) { visibility: hidden; }
+  .hero h1 .em { color: var(--accent-ink); }
+  .hero .lede { margin-top: 28px; font-size: 1.12rem; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .portrait { width: min(100%, 280px); aspect-ratio: 1; justify-self: center; border-radius: 50%; overflow: hidden; background: var(--surface); }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .portrait { order: -1; width: min(100%, 180px); justify-self: start; }
+  }
+
+  /* ------------------------------------------------------------------
+     Marquee (the only one on the page): breadth of skills
+  ------------------------------------------------------------------ */
+  .marquee { border-block: 1px solid var(--line); overflow: hidden; padding: 28px 0; background: var(--surface); }
+  .marquee-track { display: flex; width: max-content; will-change: transform; }
+  .marquee-group { display: flex; align-items: center; flex: none; }
+  .marquee-item { font-size: clamp(1.6rem, 3.2vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; white-space: nowrap; padding-inline: 28px; color: var(--fg); }
+  .marquee-item:nth-child(4n+2) { color: transparent; -webkit-text-stroke: 1.5px var(--muted); }
+  .marquee-sep { width: 1px; height: 28px; background: var(--line); flex: none; }
+
+  /* ------------------------------------------------------------------
+     Pipeline: sensor to server (pinned scene, scroll-driven)
+  ------------------------------------------------------------------ */
+  .pipe { padding-top: clamp(72px, 10vw, 140px); }
+  .pipe-pin { min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; gap: 20px; padding-block: 88px 32px; }
+  .pipe-head { display: grid; gap: 14px; }
+  .pipe-svg { width: 100%; height: auto; max-height: 52dvh; display: block; overflow: visible; }
+  .pipe-svg text { font-family: "Urbanist", system-ui, sans-serif; font-weight: 700; font-size: 14px; fill: var(--muted); letter-spacing: .02em; }
+  .pipe-svg .die-label { font-size: 15px; font-weight: 900; fill: var(--fg); letter-spacing: -0.02em; }
+  .pipe-svg .u-title { font-size: 17px; font-weight: 800; fill: var(--fg); }
+  .pipe-svg .u-sub { font-size: 13px; font-weight: 600; }
+  .pipe-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pipe-step { border-top: 2px solid var(--line); padding-top: 16px; opacity: .45; transition: opacity .4s var(--ease), border-color .4s var(--ease); }
+  .pipe-step.on { opacity: 1; border-color: var(--accent); }
+  .pipe-step h3 { font-size: 1.25rem; font-weight: 800; }
+  .pipe-step p { color: var(--muted); font-size: 15px; margin-top: 6px; max-width: 34ch; }
+  @media (max-width: 860px) {
+    .pipe-steps { grid-template-columns: 1fr; gap: 12px; }
+    .pipe-step p { display: none; }
+    .pipe-step.on p { display: block; }
+    .pipe-svg { max-height: 38dvh; }
+  }
+
+  /* ------------------------------------------------------------------
+     Projects: sticky stack (each card pins, the previous one recedes)
+  ------------------------------------------------------------------ */
+  .projects { padding-top: clamp(96px, 14vw, 180px); }
+  .projects-head { margin-bottom: 40px; }
+  .stack { position: relative; }
+  .stack-card { position: sticky; top: 0; height: 100dvh; display: grid; place-items: center; padding: 84px var(--pad) 28px; }
+  .project {
+    width: 100%; max-width: var(--max); height: min(100%, 620px);
+    display: grid; grid-template-columns: 5fr 6fr; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card);
+    transform-origin: 50% 0; will-change: transform;
+    position: relative; --dim: 0;
+  }
+  /* Receding cards dim with an opaque overlay, never with opacity, so cards underneath cannot show through. */
+  .project::after { content: ""; position: absolute; inset: 0; background: var(--bg); opacity: var(--dim); pointer-events: none; }
+  /* TODO: replace .visual with a real project photo (generated or provided), 1200x1200 */
+  .visual {
+    position: relative; display: flex; align-items: flex-end; padding: 32px; overflow: hidden;
+    background:
+      repeating-radial-gradient(circle at 30% 120%, transparent 0 22px, color-mix(in srgb, var(--accent) 16%, transparent) 22px 23px),
+      var(--tint);
+  }
+  .visual .big-year { font-size: clamp(5rem, 11vw, 9.5rem); font-weight: 900; letter-spacing: -0.06em; line-height: .85; color: color-mix(in srgb, var(--fg) 88%, transparent); }
+  .project-body { padding: clamp(28px, 4vw, 52px); display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
+  .project-body h3 { font-size: clamp(1.6rem, 2.6vw, 2.3rem); font-weight: 800; max-width: 18ch; }
+  .project-body p { color: var(--muted); max-width: 46ch; margin-top: 16px; }
+  .project-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .project-client { color: var(--accent-ink); font-weight: 700; font-size: 15px; margin-bottom: 12px; }
+  @media (max-width: 860px) {
+    .project { grid-template-columns: 1fr; grid-template-rows: 150px 1fr; height: min(100%, 640px); }
+    .visual { padding: 20px; }
+    .visual .big-year { font-size: 4.2rem; }
+  }
+
+  /* ------------------------------------------------------------------
+     Experience: split screen, sticky heading + progress line
+  ------------------------------------------------------------------ */
+  .exp { padding-block: clamp(96px, 14vw, 180px); }
+  .exp-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .exp-sticky { position: sticky; top: 120px; }
+  .tl { position: relative; padding-left: 44px; display: grid; gap: 56px; }
+  .tl-line { position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--line); border-radius: 2px; }
+  .tl-fill { position: absolute; inset: 0; background: var(--accent); border-radius: 2px; transform-origin: 50% 0; transform: scaleY(0); }
+  .tl-item { position: relative; }
+  .tl-item::before { content: ""; position: absolute; left: -44px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+  .tl-when { font-weight: 800; color: var(--accent-ink); font-size: 15px; }
+  .tl-item h3 { font-size: 1.6rem; font-weight: 800; margin-top: 6px; }
+  .tl-org { color: var(--muted); font-weight: 600; margin-top: 4px; }
+  .tl-item p { color: var(--muted); margin-top: 14px; max-width: 58ch; }
+  @media (max-width: 860px) { .exp-grid { grid-template-columns: 1fr; } .exp-sticky { position: static; } }
+
+  /* ------------------------------------------------------------------
+     Skills: bento, exactly 5 cells
+  ------------------------------------------------------------------ */
+  .skills { padding-bottom: clamp(96px, 14vw, 180px); }
+  .skills-head { margin-bottom: 40px; }
+  .bento { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: minmax(190px, auto); gap: 16px; }
+  .cell { border-radius: var(--radius-card); padding: 28px; border: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
+  .cell h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; }
+  .cell .ico { font-size: 30px; color: var(--accent-ink); }
+  .cell .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cell-a { grid-column: span 3; grid-row: span 2; background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .cell-a .ico { color: var(--on-accent); font-size: 44px; }
+  .cell-a h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+  .cell-a .tag { color: var(--on-accent); border-color: color-mix(in srgb, var(--on-accent) 40%, transparent); }
+  .cell-b { grid-column: span 3; background: var(--tint); }
+  .cell-c { grid-column: span 3; }
+  .cell-d { grid-column: span 4;
+    background: repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in srgb, var(--line) 70%, transparent) 14px 15px), var(--surface); }
+  .cell-e { grid-column: span 2; background: var(--surface-2); }
+  @media (max-width: 860px) {
+    .bento { grid-template-columns: 1fr; }
+    .cell-a, .cell-b, .cell-c, .cell-d, .cell-e { grid-column: auto; grid-row: auto; }
+  }
+
+  /* ------------------------------------------------------------------
+     Contact
+  ------------------------------------------------------------------ */
+  .contact { padding-block: clamp(80px, 12vw, 150px); background: var(--surface); border-top: 1px solid var(--line); }
+  .contact-grid { display: grid; grid-template-columns: 6fr 5fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .email-big { display: inline-block; margin-top: 32px; font-size: clamp(1.4rem, 3.2vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; border-bottom: 2px solid var(--accent); padding-bottom: 6px; word-break: break-all; transition: color .25s; }
+  .email-big:hover { color: var(--accent-ink); }
+  .reach { margin-top: 36px; display: grid; gap: 14px; }
+  .reach a { display: inline-flex; align-items: center; gap: 12px; color: var(--muted); font-weight: 600; transition: color .2s; width: fit-content; }
+  .reach a:hover { color: var(--fg); }
+  .reach i { font-size: 22px; color: var(--accent-ink); }
+  form { display: grid; gap: 20px; }
+  .field { display: grid; gap: 8px; }
+  .field label { font-weight: 700; font-size: 14px; }
+  .field input, .field textarea { width: 100%; padding: 14px 16px; border-radius: var(--radius-input); border: 1px solid var(--line); background: var(--bg); transition: border-color .2s, box-shadow .2s; }
+  .field textarea { min-height: 140px; resize: vertical; }
+  .field input:hover, .field textarea:hover { border-color: var(--muted); }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+  .field .err { color: #E5484D; font-size: 13px; font-weight: 600; min-height: 0; display: none; }
+  .field.invalid .err { display: block; }
+  .field.invalid input, .field.invalid textarea { border-color: #E5484D; }
+  [data-theme="light"] .field .err { color: #C42B31; }
+  .form-status { font-weight: 600; color: var(--muted); }
+  @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+
+</style>
 </head>
 
-<body class="dark-mode">
+<body>
 
-    <!-- MENU -->
-    <nav class="navbar navbar-expand-sm navbar-light">
-        <div class="container">
-            <div class="navbar-brand">
-                <i class="uil uil-user"></i>
-                <a href="index.html">Adam.</a>
-            </div>
+<header class="nav" role="banner">
+  <a href="#top" class="brand" aria-label="Adam, back to top">Adam<span>.</span></a>
+  <nav aria-label="Primary">
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to light theme"><i class="ph ph-sun" id="themeIcon"></i></button>
+</header>
 
-            <div class="d-flex align-items-center order-sm-3">
-                <span class="color-mode mr-3 mr-sm-0" title="Toggle Theme">
-                    <i class="color-mode-icon"></i>
-                    <span class="d-none d-sm-inline-block font-weight-bold ml-2">Theme</span>
-                </span>
+<main id="top">
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-
-            <div class="collapse navbar-collapse order-sm-2" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link"><span data-hover="About">About</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#resume" class="nav-link"><span data-hover="Resume">Resume</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#skills" class="nav-link"><span data-hover="Skills">Skills</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#projects" class="nav-link"><span data-hover="Projects">Projects</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link"><span data-hover="Contact">Contact</span></a>
-                    </li>
-                </ul>
-            </div>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas id="heroBg" aria-hidden="true"></canvas>
+    <div class="wrap hero-grid">
+      <div>
+        <h1 id="heroTitle" aria-label="Adam Firmansyah. Security System Engineer, Network Administrator and IoT Developer.">
+          <span class="rot" aria-hidden="true">
+            <span class="rot-item"><span class="line"><span class="split">I'm Adam</span></span><span class="line"><span class="split em">Firmansyah.</span></span></span>
+            <span class="rot-item"><span class="line"><span class="split">Security System</span></span><span class="line"><span class="split em">Engineer.</span></span></span>
+            <span class="rot-item"><span class="line"><span class="split">Network</span></span><span class="line"><span class="split em">Administrator.</span></span></span>
+            <span class="rot-item"><span class="line"><span class="split">IoT</span></span><span class="line"><span class="split em">Developer.</span></span></span>
+          </span>
+        </h1>
+        <p class="lede hero-sub">Security systems integration professional with 3+ years of experience. I&nbsp;deliver the full project cycle: site survey, BoQ estimation, installation, configuration, testing and commissioning, user training, and documentation.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" id="magnet" href="#projects">View projects <i class="ph ph-arrow-down-right"></i></a>
+          <a class="btn btn-ghost" href="CV_Adam_Firmansyah2026.pdf" download><i class="ph ph-download-simple"></i> Download CV</a>
         </div>
-    </nav>
+      </div>
+      <div class="portrait" id="portrait">
+        <img src="images/profil.jfif" width="400" height="400" alt="Portrait of Adam Firmansyah" decoding="async">
+      </div>
+    </div>
+  </section>
 
-    <!-- ABOUT / HERO -->
-    <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center order-2 order-lg-1 reveal">
-                    <div class="about-text text-center text-lg-left w-100">
-                        <h1 class="animated animated-text">
-                            <span class="mr-2">Hello, I'm</span>
-                            <span class="gradient-text">Adam Firmansyah</span>
-                            <div class="animated-info mt-2">
-                                <span class="animated-item">Security System Engineer</span>
-                                <span class="animated-item">IoT Enthusiast</span>
-                                <span class="animated-item">Network Administrator</span>
-                            </div>
-                        </h1>
-                        <br>
-                        <p class="mt-2 mb-4">Crafting reliable security infrastructure and smart monitoring solutions.</p>
+  <!-- MARQUEE -->
+  <section class="marquee" aria-label="Skills">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-group">
+        <span class="marquee-item">CCTV Systems</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Access Control</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Alarm Systems</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Routing and Switching</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Wireless</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Firewall</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Firmware Development</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Sensors</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Network Monitoring</span><span class="marquee-sep"></span>
+        <span class="marquee-item">System Commissioning</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Quality Control</span><span class="marquee-sep"></span>
+      </div>
+    </div>
+  </section>
 
-                        <div class="custom-btn-group mt-4 reveal reveal-delay-2">
-                            <a href="https://drive.google.com/file/d/1NnqTaFjUvM0zwuRxOD0Yds8Z3Mdp_Yob/view?usp=sharing"
-                                class="btn mr-lg-2 custom-btn" target="_blank"><i class='uil uil-file-alt'></i> Download Resume</a>
-                            <a href="#contact" class="btn custom-btn custom-btn-bg">Get in Touch</a>
-                        </div>
-                    </div>
-                </div>
+  <!-- SYSTEMS: everything integrated -->
+  <section class="pipe" id="systems">
+    <div class="pipe-pin" id="pipePin">
+      <div class="wrap pipe-head">
+        <h2 class="section-title">One system, every device</h2>
+        <p class="lede">Access control, CCTV, intruder alarms and IoT controllers on one network, feeding one platform, so security and operations see the same picture.</p>
+      </div>
+      <div class="wrap">
+        <svg class="pipe-svg" id="pipeSvg" viewBox="0 0 1200 520" role="img"
+             aria-label="Diagram: access control, CCTV, an intruder alarm and a microcontroller connect through one network switch to a single integrated platform."></svg>
+      </div>
+      <div class="wrap pipe-steps" id="pipeSteps">
+        <div class="pipe-step on"><h3>Detect</h3><p>Readers, cameras, alarm sensors and microcontrollers each report what they see.</p></div>
+        <div class="pipe-step"><h3>Connect</h3><p>Everything shares one network, switched and routed to the right place.</p></div>
+        <div class="pipe-step"><h3>Unify</h3><p>One platform correlates it all, so a door event can pull up a camera and raise an alarm.</p></div>
+      </div>
+    </div>
+  </section>
 
-                <div class="col-lg-5 col-md-12 col-12 text-center order-1 order-lg-2 mb-5 mb-lg-0 reveal reveal-delay-1">
-                    <div class="about-image">
-                        <img src="images/undraw/adam.png" class="img-fluid" alt="Adam Firmansyah">
-                    </div>
-                </div>
-            </div>
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="wrap projects-head">
+      <h2 class="section-title">Projects that shipped</h2>
+    </div>
+    <div class="stack" id="stack">
+
+      <div class="stack-card"><article class="project">
+        <div class="visual"><div class="big-year">2026</div></div>
+        <div class="project-body">
+          <div>
+            <div class="project-client">Indosat Ooredoo</div>
+            <h3>Smart IoT Monitoring</h3>
+            <p>Led R&amp;D for Gallon Monitoring and Toilet Counter systems. Managed hardware selection, architecture design and firmware development.</p>
+          </div>
+          <div class="project-meta"><span class="tag year">2026</span><span class="tag">IoT</span><span class="tag">R&amp;D</span></div>
         </div>
-    </section>
+      </article></div>
 
-    <!-- ABOUT ME DETAIL -->
-    <section class="about-me py-5" id="about-me">
-        <div class="container">
-            <div class="row reveal">
-                <div class="col-lg-8 mx-auto col-12 text-center glass-card p-5">
-                    <h2 class="mb-4 section-heading">About Me</h2>
-                    <p class="text-center">I am a Security System Engineer with a strong background in network infrastructure and IoT development. I build and deploy reliable, end-to-end security systems—from CCTV and access controls to smart monitoring solutions. Passionate about exploring new technologies and optimizing security architectures.</p>
-                </div>
-            </div>
+      <div class="stack-card"><article class="project">
+        <div class="visual"><div class="big-year">2025</div></div>
+        <div class="project-body">
+          <div>
+            <div class="project-client">Soekarno-Hatta Airport</div>
+            <h3>Access Control for the Kalayang Depot</h3>
+            <p>Architected the system infrastructure and managed device-to-server configuration end to end. Ran rigorous testing and user training.</p>
+          </div>
+          <div class="project-meta"><span class="tag year">2025</span><span class="tag">Infrastructure</span><span class="tag">Access Control</span></div>
         </div>
-    </section>
+      </article></div>
 
-    <!-- RESUME / EXPERIENCE -->
-    <section class="resume py-5 d-lg-flex justify-content-center align-items-center" id="resume">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-6 col-12 reveal">
-                    <h2 class="mb-4 section-heading">Experience</h2>
-                    <div class="timeline">
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2023-Now</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3>Security System Engineer</h3>
-                                <small>PT. Lumba Karya Asia &bull; Full Time</small>
-                                <p>Lead technical operations including comprehensive site surveys, Proof of Concept (POC) demonstrations, and technical meetings. Responsible for developing Bill of Quantities (BoQ), designing security system architectures, and managing end-to-end installation and configuration. Execute testing and commissioning, provide specialized user training, and deliver detailed project reports.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-12 reveal reveal-delay-2">
-                    <h2 class="mb-4 mobile-mt-2 section-heading">Education</h2>
-                    <div class="timeline">
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2025</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3>Pamulang University</h3>
-                                <small>Informatics Engineering</small>
-                                <p>Focusing on computer science fundamentals, software engineering, and modern web development.</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-wrapper">
-                            <div class="timeline-yr">
-                                <span>2018</span>
-                            </div>
-                            <div class="timeline-info">
-                                <h3>Yadika 12 SHS</h3>
-                                <small>Computer & Network Engineering</small>
-                                <p>Focused on local network planning, hardware maintenance, and IT infrastructure configuration.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+      <div class="stack-card"><article class="project">
+        <div class="visual"><div class="big-year">2025</div></div>
+        <div class="project-body">
+          <div>
+            <div class="project-client">Executive Home Office</div>
+            <h3>Network Infrastructure and CCTV</h3>
+            <p>Engineered the full network (switches, APs, routers) and integrated a high-definition CCTV system with NVR setup.</p>
+          </div>
+          <div class="project-meta"><span class="tag year">2025</span><span class="tag">Network</span><span class="tag">CCTV</span></div>
         </div>
-    </section>
+      </article></div>
 
-    <!-- SKILLS -->
-    <section class="skills py-5" id="skills">
-        <div class="container">
-            <div class="row reveal">
-                <div class="col-lg-12 col-12 text-center mb-5">
-                    <h2 class="mb-2 section-heading">Skills & Expertise</h2>
-                    <p class="text-center mx-auto" style="max-width: 600px;">Core technologies and methodologies I utilize to deliver reliable and secure systems.</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- Security Systems -->
-                <div class="col-lg-4 col-md-6 col-12 mb-4 reveal reveal-delay-1">
-                    <div class="project-card text-center">
-                        <div class="d-flex flex-column align-items-center mb-3">
-                            <div class="project-icon">
-                                <i class="uil uil-shield-check"></i>
-                            </div>
-                            <h3>Security Systems</h3>
-                        </div>
-                        <div class="project-tags justify-content-center">
-                            <span>CCTV Systems</span>
-                            <span>Access Control</span>
-                            <span>Alarm Systems</span>
-                            <span>NVR/DVR</span>
-                            <span>Biometrics</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Network Infrastructure -->
-                <div class="col-lg-4 col-md-6 col-12 mb-4 reveal reveal-delay-2">
-                    <div class="project-card text-center">
-                        <div class="d-flex flex-column align-items-center mb-3">
-                            <div class="project-icon">
-                                <i class="uil uil-sitemap"></i>
-                            </div>
-                            <h3>Network Infra</h3>
-                        </div>
-                        <div class="project-tags justify-content-center">
-                            <span>Routing & Switching</span>
-                            <span>LAN/WAN</span>
-                            <span>Wireless</span>
-                            <span>Firewall</span>
-                            <span>TCP/IP</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- IoT & Hardware -->
-                <div class="col-lg-4 col-md-6 col-12 mb-4 reveal reveal-delay-3">
-                    <div class="project-card text-center">
-                        <div class="d-flex flex-column align-items-center mb-3">
-                            <div class="project-icon">
-                                <i class="uil uil-processor"></i>
-                            </div>
-                            <h3>IoT & Hardware</h3>
-                        </div>
-                        <div class="project-tags justify-content-center">
-                            <span>Microcontrollers</span>
-                            <span>Sensors</span>
-                            <span>Firmware Dev</span>
-                            <span>Prototyping</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tools & Methodologies -->
-                <div class="col-lg-6 col-md-6 col-12 mb-4 reveal reveal-delay-1">
-                    <div class="project-card text-center">
-                        <div class="d-flex flex-column align-items-center mb-3">
-                            <div class="project-icon">
-                                <i class="uil uil-wrench"></i>
-                            </div>
-                            <h3>Tools & Methods</h3>
-                        </div>
-                        <div class="project-tags justify-content-center">
-                            <span>Linux OS</span>
-                            <span>Network Monitoring</span>
-                            <span>System Commissioning</span>
-                            <span>Quality Control</span>
-                            <span>BoQ Development</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Languages & Soft Skills -->
-                <div class="col-lg-6 col-md-12 col-12 mb-4 reveal reveal-delay-2">
-                    <div class="project-card text-center">
-                        <div class="d-flex flex-column align-items-center mb-3">
-                            <div class="project-icon">
-                                <i class="uil uil-users-alt"></i>
-                            </div>
-                            <h3>Soft Skills</h3>
-                        </div>
-                        <div class="project-tags justify-content-center">
-                            <span>Project Documentation</span>
-                            <span>Technical Training</span>
-                            <span>Problem Solving</span>
-                            <span>Team Collaboration</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+      <div class="stack-card"><article class="project">
+        <div class="visual"><div class="big-year">2024</div></div>
+        <div class="project-body">
+          <div>
+            <div class="project-client">Denpasar Residence</div>
+            <h3>Access Control System</h3>
+            <p>Managed full-cycle installation of access servers, door devices and elevator integration, then commissioned and tested the system.</p>
+          </div>
+          <div class="project-meta"><span class="tag year">2024</span><span class="tag">Access Control</span><span class="tag">Security</span></div>
         </div>
-    </section>
+      </article></div>
 
-    <!-- PROJECTS -->
-    <section class="project py-5" id="projects">
-        <div class="container">
-            <div class="row reveal">
-                <div class="col-lg-12 col-12 text-center mb-5">
-                    <h2 class="mb-2 section-heading">Highlight Projects</h2>
-                    <p class="text-center mx-auto" style="max-width: 600px;">Key technical projects focusing on security systems, IoT, and network infrastructure deployment.</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12 mb-4 reveal reveal-delay-1">
-                    <div class="project-card">
-                        <div class="project-icon">
-                            <i class="uil uil-server-network"></i>
-                        </div>
-                        <h3>Smart IoT Monitoring - Indosat Ooredoo</h3>
-                        <p>Led R&D for Gallon Monitoring and Toilet Counter systems. Managed hardware selection, architecture design, and firmware development.</p>
-                        <div class="project-tags">
-                            <span class="badge badge-warning">2026</span>
-                            <span>IoT</span>
-                            <span>R&D</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12 mb-4 reveal reveal-delay-2">
-                    <div class="project-card">
-                        <div class="project-icon">
-                            <i class="uil uil-plane-arrival"></i>
-                        </div>
-                        <h3>Access Control - Soekarno-Hatta Airport</h3>
-                        <p>Architected system infrastructure and managed end-to-end device-to-server configuration for the Kalayang Depot. Executed rigorous testing and training.</p>
-                        <div class="project-tags">
-                            <span class="badge badge-warning">2025</span>
-                            <span>Infrastructure</span>
-                            <span>Access Control</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12 mb-4 reveal reveal-delay-3">
-                    <div class="project-card">
-                        <div class="project-icon">
-                            <i class="uil uil-wifi-router"></i>
-                        </div>
-                        <h3>Network Infra & CCTV - Executive Home Office</h3>
-                        <p>Engineered complete network infrastructure (switches, APs, routers) and integrated high-definition CCTV security system with NVR setup.</p>
-                        <div class="project-tags">
-                            <span class="badge badge-warning">2025</span>
-                            <span>Network</span>
-                            <span>CCTV</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12 mb-4 reveal reveal-delay-1">
-                    <div class="project-card">
-                        <div class="project-icon">
-                            <i class="uil uil-keyhole-square"></i>
-                        </div>
-                        <h3>Access Control System - Denpasar Residence</h3>
-                        <p>Managed full-cycle installation of access servers, door devices, and elevator integration. Conducted comprehensive testing and commissioning.</p>
-                        <div class="project-tags">
-                            <span class="badge badge-warning">2024</span>
-                            <span>Access Control</span>
-                            <span>Security</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12 mb-4 reveal reveal-delay-2">
-                    <div class="project-card">
-                        <div class="project-icon">
-                            <i class="uil uil-building"></i>
-                        </div>
-                        <h3>Security Infrastructure - Microsoft JKT02 DC</h3>
-                        <p>Oversee security system deployment focusing on technical documentation, progress reporting, and Quality Control (QC) for functional performance.</p>
-                        <div class="project-tags">
-                            <span class="badge badge-warning">2024</span>
-                            <span>QC</span>
-                            <span>Data Center</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12 mb-4 reveal reveal-delay-3">
-                    <div class="project-card">
-                        <div class="project-icon">
-                            <i class="uil uil-video"></i>
-                        </div>
-                        <h3>CCTV Installation - YKK Zipco Indonesia</h3>
-                        <p>Executed end-to-end IP camera and NVR installation, network configuration, and optimization. Provided technical training for operators.</p>
-                        <div class="project-tags">
-                            <span class="badge badge-warning">2023</span>
-                            <span>Security</span>
-                            <span>CCTV</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="stack-card"><article class="project">
+        <div class="visual"><div class="big-year">2024</div></div>
+        <div class="project-body">
+          <div>
+            <div class="project-client">Microsoft JKT02 Data Center</div>
+            <h3>Security Infrastructure</h3>
+            <p>Oversaw security system deployment with a focus on technical documentation, progress reporting and Quality Control for functional performance.</p>
+          </div>
+          <div class="project-meta"><span class="tag year">2024</span><span class="tag">QC</span><span class="tag">Data Center</span></div>
         </div>
-    </section>
+      </article></div>
 
-    <!-- CONTACT -->
-    <section class="contact py-5" id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 mr-lg-5 col-12 reveal reveal-delay-1">
-                    <div class="google-map w-100">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.27669894237!2d106.78076751436188!3d-6.3582201639703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69eee8e8d737bb%3A0x16d4900aa0b55376!2sJl.%20Sasak%20Raya%2C%20Limo%2C%20Kec.%20Limo%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016515!5e0!3m2!1sid!2sid!4v1658475392447!5m2!1sid!2sid"
-                            width="400" height="300" frameborder="0" style="border:0" allowfullscreen loading="lazy"></iframe>
-                    </div>
-
-                    <div class="contact-info d-flex flex-column py-4 px-lg-5">
-                        <h3>Adam Firmansyah</h3>
-                        <div class="d-flex align-items-center mt-2 mb-2">
-                            <i class="uil uil-phone mr-3 text-accent" style="font-size: 20px;"></i>
-                            <a href="tel:+628820596563">+62 882-0596-563</a>
-                        </div>
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="uil uil-envelope mr-3 text-accent" style="font-size: 20px;"></i>
-                            <a href="mailto:adamfirmansyah2001@gmail.com">adamfirmansyah2001@gmail.com</a>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <i class="uil uil-instagram mr-3 text-accent" style="font-size: 20px;"></i>
-                            <a href="https://instagram.com/admfrmnsyh26" target="_blank">admfrmnsyh26</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-12 reveal reveal-delay-2 mt-5 mt-lg-0">
-                    <div class="contact-form">
-                        <h2 class="mb-4 section-heading">Let's Connect</h2>
-                        <form action="https://formspree.io/f/your_formspree_id" method="POST">
-                            <div class="row">
-                                <div class="col-lg-6 col-12">
-                                    <input type="text" class="form-control" name="Name" placeholder="Your Name" id="name" required>
-                                </div>
-                                <div class="col-lg-6 col-12">
-                                    <input type="email" class="form-control" name="Email" placeholder="Your Email" id="email" required>
-                                </div>
-                                <div class="col-12">
-                                    <textarea name="Message" rows="5" class="form-control" id="message" placeholder="How can I help you?" required></textarea>
-                                </div>
-                                <div class="col-12 mt-3 text-right">
-                                    <button type="submit" class="form-control submit-btn d-inline-block w-auto px-5">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+      <div class="stack-card"><article class="project">
+        <div class="visual"><div class="big-year">2023</div></div>
+        <div class="project-body">
+          <div>
+            <div class="project-client">YKK Zipco Indonesia</div>
+            <h3>CCTV Installation</h3>
+            <p>Executed end-to-end IP camera and NVR installation, network configuration and optimization, and trained the operators.</p>
+          </div>
+          <div class="project-meta"><span class="tag year">2023</span><span class="tag">Security</span><span class="tag">CCTV</span></div>
         </div>
-    </section>
+      </article></div>
 
-    <!-- FOOTER -->
-    <footer class="footer py-5 text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-12">
-                    <p class="copyright-text mb-0">&copy; 2026 Adam Firmansyah. All rights reserved.</p>
-                </div>
-            </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="exp" id="experience">
+    <div class="wrap exp-grid">
+      <div class="exp-sticky">
+        <h2 class="section-title">Experience and education</h2>
+      </div>
+      <div class="tl" id="timeline">
+        <div class="tl-line"><div class="tl-fill" id="tlFill"></div></div>
+
+        <div class="tl-item">
+          <div class="tl-when">2023 to now</div>
+          <h3>Security System Engineer</h3>
+          <div class="tl-org">PT. Lumba Karya Asia, full time</div>
+          <p>Lead site surveys, Proof of Concept demos and technical meetings. Develop the Bill of Quantities, design security architectures and manage installation and configuration. Run testing and commissioning, train users and deliver project reports.</p>
         </div>
-    </footer>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/Headroom.js"></script>
-    <script src="js/jQuery.headroom.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/smoothscroll.js"></script>
-    
-    <!-- Custom script with Scroll Reveal logic added -->
-    <script>
-        $(document).ready(function() {
-            // Scroll Reveal functionality
-            function reveal() {
-                var reveals = document.querySelectorAll(".reveal");
-                for (var i = 0; i < reveals.length; i++) {
-                    var windowHeight = window.innerHeight;
-                    var elementTop = reveals[i].getBoundingClientRect().top;
-                    var elementVisible = 50;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveals[i].classList.add("visible");
-                    }
-                }
-            }
-            window.addEventListener("scroll", reveal);
-            reveal(); // Trigger on load
-            
-            // Custom JS logic can be maintained in custom.js, we just ensure reveal runs.
+        <div class="tl-item">
+          <div class="tl-when">2025</div>
+          <h3>Pamulang University</h3>
+          <div class="tl-org">Informatics Engineering</div>
+          <p>Computer science fundamentals, software engineering and modern web development.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-when">2018</div>
+          <h3>Yadika 12 SHS</h3>
+          <div class="tl-org">Computer and Network Engineering</div>
+          <p>Local network planning, hardware maintenance and IT infrastructure configuration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS (bento, 5 content groups = 5 cells) -->
+  <section class="skills" id="skills">
+    <div class="wrap">
+      <div class="skills-head"><h2 class="section-title">What I work with</h2></div>
+      <div class="bento" id="bento">
+
+        <div class="cell cell-a">
+          <i class="ph ph-shield-check ico"></i>
+          <div>
+            <h3>Security Systems</h3>
+            <div class="tags" style="margin-top:20px"><span class="tag">CCTV</span><span class="tag">Access Control</span><span class="tag">Alarm</span><span class="tag">NVR and DVR</span><span class="tag">Biometrics</span></div>
+          </div>
+        </div>
+
+        <div class="cell cell-b">
+          <i class="ph ph-network ico"></i>
+          <div>
+            <h3>Network Infrastructure</h3>
+            <div class="tags" style="margin-top:16px"><span class="tag">Routing and Switching</span><span class="tag">LAN and WAN</span><span class="tag">Wireless</span><span class="tag">Firewall</span><span class="tag">TCP/IP</span></div>
+          </div>
+        </div>
+
+        <div class="cell cell-c">
+          <i class="ph ph-cpu ico"></i>
+          <div>
+            <h3>IoT and Hardware</h3>
+            <div class="tags" style="margin-top:16px"><span class="tag">Microcontrollers</span><span class="tag">Sensors</span><span class="tag">Firmware</span><span class="tag">Prototyping</span></div>
+          </div>
+        </div>
+
+        <div class="cell cell-d">
+          <i class="ph ph-wrench ico"></i>
+          <div>
+            <h3>Tools and Methods</h3>
+            <div class="tags" style="margin-top:16px"><span class="tag">Linux</span><span class="tag">Network Monitoring</span><span class="tag">System Commissioning</span><span class="tag">Quality Control</span><span class="tag">BoQ Development</span></div>
+          </div>
+        </div>
+
+        <div class="cell cell-e">
+          <i class="ph ph-users-three ico"></i>
+          <div>
+            <h3>Working with people</h3>
+            <div class="tags" style="margin-top:16px"><span class="tag">Documentation</span><span class="tag">Training</span><span class="tag">Problem Solving</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2 class="section-title">Let's connect</h2>
+        <p class="lede" style="margin-top:20px">Have a site that needs cameras, access control or a smarter network? Send a message.</p>
+        <a class="email-big" href="mailto:adamfirmansyah2001@gmail.com">adamfirmansyah2001@gmail.com</a>
+        <div class="reach">
+          <a href="tel:+628820596563"><i class="ph ph-phone"></i> +62 882-0596-563</a>
+          <a href="https://instagram.com/admfrmnsyh26" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i> admfrmnsyh26</a>
+        </div>
+      </div>
+
+      <form id="contactForm" novalidate>
+        <div class="field" data-field>
+          <label for="name">Your name</label>
+          <input id="name" name="Name" type="text" autocomplete="name" required>
+          <span class="err">Please enter your name.</span>
+        </div>
+        <div class="field" data-field>
+          <label for="email">Your email</label>
+          <input id="email" name="Email" type="email" autocomplete="email" required>
+          <span class="err">Please enter a valid email address.</span>
+        </div>
+        <div class="field" data-field>
+          <label for="message">How can I help?</label>
+          <textarea id="message" name="Message" required></textarea>
+          <span class="err">Please write a short message.</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+          <button class="btn btn-primary" type="submit">Send message</button>
+          <span class="form-status" id="formStatus" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">&copy; 2026 Adam Firmansyah. All rights reserved.</div>
+</footer>
+
+<script src="js/gsap.min.js"></script>
+<script src="js/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- Theme toggle (dark default, respects system preference) ---------- */
+  (function () {
+    const root = document.documentElement;
+    const btn = document.getElementById("themeBtn");
+    const icon = document.getElementById("themeIcon");
+    function apply(t) {
+      root.setAttribute("data-theme", t);
+      icon.className = "ph " + (t === "dark" ? "ph-sun" : "ph-moon");
+      btn.setAttribute("aria-label", t === "dark" ? "Switch to light theme" : "Switch to dark theme");
+    }
+    apply(window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    btn.addEventListener("click", () => apply(root.getAttribute("data-theme") === "dark" ? "light" : "dark"));
+  })();
+
+  /* ---------- Contact form: labels above, inline errors, status ---------- */
+  (function () {
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("formStatus");
+    const valid = {
+      name: v => v.trim().length > 1,
+      email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+      message: v => v.trim().length > 4
+    };
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      let ok = true;
+      form.querySelectorAll("[data-field]").forEach(f => {
+        const input = f.querySelector("input, textarea");
+        const good = valid[input.id](input.value);
+        f.classList.toggle("invalid", !good);
+        if (!good) ok = false;
+      });
+      if (!ok) { status.textContent = "Please fix the highlighted fields."; return; }
+      // No backend: hand the message to the visitor's email app, addressed to me. Swap for a form service later if wanted.
+      const v = id => form.querySelector("#" + id).value.trim();
+      const body = v("message") + "\n\n" + v("name") + "\n" + v("email");
+      location.href = "mailto:adamfirmansyah2001@gmail.com?subject=" + encodeURIComponent("Portfolio message from " + v("name")) + "&body=" + encodeURIComponent(body);
+      status.textContent = "Opening your email app. If nothing opens, write to adamfirmansyah2001@gmail.com.";
+    });
+    form.addEventListener("input", e => {
+      const f = e.target.closest("[data-field]");
+      if (f && valid[e.target.id](e.target.value)) f.classList.remove("invalid");
+    });
+  })();
+
+  /* ---------- Split hero headline into characters ---------- */
+  document.querySelectorAll(".split").forEach(el => {
+    const text = el.textContent;
+    el.textContent = "";
+    [...text].forEach(ch => {
+      const s = document.createElement("span");
+      s.className = "char";
+      s.textContent = ch === " " ? "\u00A0" : ch;
+      el.appendChild(s);
+    });
+  });
+
+  /* ---------- Integrated-system diagram (static markup built once; motion is added later) ---------- */
+  const pipe = (function () {
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = document.getElementById("pipeSvg");
+    function el(tag, attrs, parent) {
+      const n = document.createElementNS(NS, tag);
+      for (const k in attrs) n.setAttribute(k, attrs[k]);
+      (parent || svg).appendChild(n);
+      return n;
+    }
+    const S = {
+      line:   "stroke:var(--muted);stroke-opacity:.45;fill:none;stroke-width:2",
+      route:  "stroke:var(--accent);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round",
+      node:   "fill:var(--surface);stroke:var(--muted);stroke-opacity:.7;stroke-width:2",
+      inner:  "fill:var(--bg);stroke:var(--line);stroke-width:2",
+      accent: "fill:var(--accent)",
+      ghost:  "fill:var(--surface-2)"
+    };
+
+    // Layer order matters: routes sit under every node, so create their group first.
+    const gRoute = el("g", { id: "gRoute" });
+    const gDev = el("g", { id: "gDev" });
+    const gNet = el("g", { id: "gNet" });
+    const gSrv = el("g", { id: "gSrv" });
+    const links = [];      // paths that carry ambient packets
+    const leds = [];       // elements that blink
+
+    const rows = [70, 185, 300, 415];     // device centre lines
+    const ports = [230, 250, 270, 290];   // switch port heights
+    const devPath = (cy, py) => `M160,${cy} L260,${cy} L360,${py} L462,${py}`;
+
+    /* ----- Links device -> switch (grey base + accent route on top of it for the scroll story) ----- */
+    const devRoutes = rows.map((cy, i) => {
+      const d = devPath(cy, ports[i]);
+      const base = el("path", { d, style: S.line }, gDev);
+      links.push({ path: base, dur: 2 + i * 0.35 });
+      return el("path", { d, style: S.route }, gRoute);
+    });
+
+    /* ----- Device 1: access control (reader + door) ----- */
+    let cy = rows[0];
+    el("rect", { x: 68, y: cy - 32, width: 42, height: 64, rx: 10, style: S.node }, gDev);
+    el("rect", { x: 78, y: cy - 22, width: 22, height: 14, rx: 3, style: S.inner }, gDev);
+    leds.push({ node: el("circle", { cx: 89, cy: cy + 8, r: 4, style: S.accent }, gDev), min: 0.2, max: 1, slow: true });
+    el("path", { d: `M118,${cy + 32} L118,${cy - 32} L152,${cy - 32} L152,${cy + 32}`, style: "fill:none;stroke:var(--muted);stroke-opacity:.7;stroke-width:2;stroke-linejoin:round" }, gDev);
+    el("rect", { x: 122, y: cy - 28, width: 26, height: 60, rx: 2, style: S.inner }, gDev);
+    el("circle", { cx: 142, cy: cy + 2, r: 2.5, style: "fill:var(--muted);fill-opacity:.8" }, gDev);
+    el("text", { x: 105, y: cy + 54, "text-anchor": "middle" }, gDev).textContent = "Access control";
+
+    /* ----- Device 2: CCTV camera ----- */
+    cy = rows[1];
+    el("rect", { x: 76, y: cy + 14, width: 14, height: 16, rx: 3, style: S.ghost }, gDev);
+    el("rect", { x: 64, y: cy - 18, width: 86, height: 34, rx: 10, style: S.node }, gDev);
+    el("circle", { cx: 130, cy: cy - 1, r: 11, style: "fill:var(--bg);stroke:var(--muted);stroke-width:2" }, gDev);
+    el("circle", { cx: 130, cy: cy - 1, r: 4, style: S.ghost }, gDev);
+    leds.push({ node: el("circle", { cx: 80, cy: cy - 8, r: 3.5, style: S.accent }, gDev), min: 0.2, max: 1, slow: true });
+    el("text", { x: 105, y: cy + 54, "text-anchor": "middle" }, gDev).textContent = "CCTV";
+
+    /* ----- Device 3: intruder alarm (motion sensor + siren) ----- */
+    cy = rows[2];
+    el("rect", { x: 68, y: cy - 26, width: 44, height: 52, rx: 10, style: S.node }, gDev);
+    el("circle", { cx: 90, cy: cy - 6, r: 12, style: S.inner }, gDev);
+    el("circle", { cx: 90, cy: cy - 6, r: 5, style: S.ghost }, gDev);
+    leds.push({ node: el("circle", { cx: 90, cy: cy + 14, r: 3, style: S.accent }, gDev), min: 0.15, max: 1 });
+    el("path", { d: `M122,${cy - 12} L150,${cy - 26} L150,${cy + 26} L122,${cy + 12} Z`, style: S.node }, gDev);
+    leds.push({ node: el("circle", { cx: 138, cy: cy, r: 5, style: S.accent }, gDev), min: 0.1, max: 1 });
+    el("text", { x: 105, y: cy + 54, "text-anchor": "middle" }, gDev).textContent = "Intruder alarm";
+
+    /* ----- Device 4: microcontroller ----- */
+    cy = rows[3];
+    for (let i = 0; i < 4; i++) {
+      const y = cy - 18 + i * 12;
+      el("rect", { x: 72, y: y - 2.5, width: 12, height: 5, rx: 2, style: S.ghost }, gDev);
+      el("rect", { x: 140, y: y - 2.5, width: 12, height: 5, rx: 2, style: S.ghost }, gDev);
+    }
+    for (let i = 0; i < 3; i++) {
+      const x = 96 + i * 16;
+      el("rect", { x: x - 2.5, y: cy - 40, width: 5, height: 12, rx: 2, style: S.ghost }, gDev);
+      el("rect", { x: x - 2.5, y: cy + 28, width: 5, height: 12, rx: 2, style: S.ghost }, gDev);
+    }
+    el("rect", { x: 84, y: cy - 28, width: 56, height: 56, rx: 8, style: S.node }, gDev);
+    el("text", { x: 112, y: cy + 5, "text-anchor": "middle", class: "die-label" }, gDev).textContent = "MCU";
+    leds.push({ node: el("rect", { x: 90, y: cy - 22, width: 7, height: 7, rx: 2, style: S.accent }, gDev), min: 0.4, max: 0.8 });
+    el("text", { x: 105, y: cy + 62, "text-anchor": "middle" }, gDev).textContent = "Microcontroller";
+
+    /* ----- Network switch ----- */
+    el("rect", { x: 470, y: 196, width: 130, height: 128, rx: 14, style: S.node }, gNet);
+    ports.forEach(py => el("rect", { x: 462, y: py - 3, width: 8, height: 6, rx: 2, style: S.ghost }, gNet));
+    el("text", { x: 535, y: 232, "text-anchor": "middle", class: "u-title" }, gNet).textContent = "One network";
+    for (let i = 0; i < 8; i++) {
+      const r = el("rect", { x: 486 + i * 13, y: 276, width: 8, height: 18, rx: 2, style: S.accent }, gNet);
+      leds.push({ node: r, min: 0.15, max: 1 });
+    }
+    el("text", { x: 535, y: 354, "text-anchor": "middle" }, gNet).textContent = "Switching and routing";
+
+    /* ----- Switch -> server link ----- */
+    const srvD = "M600,260 L830,260";
+    links.push({ path: el("path", { d: srvD, style: S.line }, gSrv), dur: 2.2 });
+    const srvRoute = el("path", { d: srvD, style: S.route }, gRoute);
+
+    /* ----- Integrated platform (server rack, one unit per system) ----- */
+    el("rect", { x: 830, y: 60, width: 320, height: 400, rx: 18, style: S.node }, gSrv);
+    const units = [
+      ["Access control", "Doors, credentials, schedules"],
+      ["Video", "Live view, recording, search"],
+      ["Alarm", "Zones, events, escalation"],
+      ["IoT", "Sensor data, device health"]
+    ];
+    units.forEach((u, i) => {
+      const y = 78 + i * 92;
+      el("rect", { x: 846, y, width: 288, height: 80, rx: 10, style: S.inner }, gSrv);
+      el("text", { x: 866, y: y + 36, class: "u-title" }, gSrv).textContent = u[0];
+      el("text", { x: 866, y: y + 58, class: "u-sub" }, gSrv).textContent = u[1];
+      for (let l = 0; l < 3; l++) {
+        const led = el("circle", { cx: 1090 + l * 14, cy: y + 40, r: 4, style: S.accent }, gSrv);
+        leds.push({ node: led, min: 0.12, max: 1 });
+      }
+    });
+    el("text", { x: 990, y: 490, "text-anchor": "middle" }, gSrv).textContent = "Integrated platform";
+
+    return { svg, gDev, gNet, gSrv, devRoutes, srvRoute, links, leds, rows, ports };
+  })();
+
+  /* ---------- Motion. Everything below only runs if the user has not asked for reduced motion ---------- */
+  const mm = gsap.matchMedia();
+
+  mm.add(window.FORCE_MOTION ? "all" : "(prefers-reduced-motion: no-preference)", () => {
+
+    // Hero entrance. Why: sets reading order (headline, then proof, then actions).
+    const heroTl = gsap.timeline({ defaults: { ease: "expo.out" } })
+      .from(".rot-item:first-child .char", { yPercent: 110, duration: 1.1, stagger: 0.018 })
+      .from(".hero-sub", { y: 20, opacity: 0, duration: 0.9 }, "-=0.7")
+      .from(".hero-cta .btn", { y: 16, opacity: 0, duration: 0.8, stagger: 0.08 }, "-=0.7")
+      .from("#portrait", { clipPath: "inset(0 0 100% 0)", duration: 1.2 }, 0.1);
+
+    // Rotating headline. Why: one headline slot tells the whole story (name, then each role) without more text on screen.
+    // The first phrase is the entrance above; the rest wait below their line mask until their turn.
+    const phrases = gsap.utils.toArray(".rot-item");
+    const charsOf = p => p.querySelectorAll(".char");
+    gsap.set(phrases.slice(1), { visibility: "visible" });
+    gsap.set(phrases.slice(1).flatMap(p => [...charsOf(p)]), { yPercent: 110 });
+    const rotate = gsap.timeline({ repeat: -1, paused: true });
+    phrases.forEach((p, i) => {
+      const next = phrases[(i + 1) % phrases.length];
+      rotate
+        .fromTo(charsOf(p), { yPercent: 0 }, { yPercent: -110, duration: 0.55, ease: "expo.in", stagger: 0.012, immediateRender: false }, i === 0 ? 2.4 : ">+=2.4")
+        .fromTo(charsOf(next), { yPercent: 110 }, { yPercent: 0, duration: 0.9, ease: "expo.out", stagger: 0.018, immediateRender: false }, ">-=0.1");
+    });
+    heroTl.call(() => rotate.play(), null, ">");
+
+    // Magnetic primary action (pointer devices only).
+    if (window.matchMedia("(hover: hover)").matches) {
+      const mag = document.getElementById("magnet");
+      const mx = gsap.quickTo(mag, "x", { duration: 0.5, ease: "power3" });
+      const my = gsap.quickTo(mag, "y", { duration: 0.5, ease: "power3" });
+      mag.addEventListener("mousemove", e => {
+        const r = mag.getBoundingClientRect();
+        mx((e.clientX - (r.left + r.width / 2)) * 0.25);
+        my((e.clientY - (r.top + r.height / 2)) * 0.35);
+      });
+      mag.addEventListener("mouseleave", () => { mx(0); my(0); });
+    }
+
+    // Marquee. Why: shows breadth of skills without asking the reader to stop on each one.
+    const track = document.getElementById("marqueeTrack");
+    const group = track.firstElementChild;
+    track.appendChild(group.cloneNode(true));
+    const loop = gsap.to(track, { xPercent: -50, ease: "none", duration: 38, repeat: -1 });
+    // Speed up briefly while scrolling (reads the scroll through ScrollTrigger, no scroll listener).
+    ScrollTrigger.create({
+      onUpdate: self => {
+        gsap.to(loop, { timeScale: 1 + Math.min(Math.abs(self.getVelocity()) / 400, 4), duration: 0.2, overwrite: true });
+        gsap.to(loop, { timeScale: 1, duration: 1, delay: 0.2, overwrite: false });
+      }
+    });
+
+    // Sticky stack. Why: one project at a time, previous one recedes so the order of work stays legible.
+    const cards = gsap.utils.toArray(".stack-card");
+    cards.forEach((card, i) => {
+      if (i === cards.length - 1) return;
+      gsap.to(card.querySelector(".project"), {
+        scale: 0.92, "--dim": 0.6, ease: "none",
+        // Trigger is the non-sticky .stack: sticky elements report unreliable positions to ScrollTrigger.
+        // Card i+1 enters at scroll = i * vh and fully covers card i at (i + 1) * vh.
+        scrollTrigger: {
+          trigger: ".stack", scrub: true, invalidateOnRefresh: true,
+          start: () => "top+=" + i * window.innerHeight + " top",
+          end: () => "top+=" + (i + 1) * window.innerHeight + " top"
+        }
+      });
+    });
+
+    // Timeline progress. Why: the line fills as you move forward through the career.
+    gsap.to("#tlFill", {
+      scaleY: 1, ease: "none",
+      scrollTrigger: { trigger: "#timeline", start: "top 65%", end: "bottom 65%", scrub: true }
+    });
+
+    // Bento reveal in batches. Why: groups arrive together so the grid reads as a set.
+    const cells = gsap.utils.toArray(".cell");
+    gsap.set(cells, { opacity: 0, y: 36 });
+    ScrollTrigger.batch(cells, {
+      start: "top 90%", once: true,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", stagger: 0.09 })
+    });
+
+    /* ----- Integrated system diagram ----- */
+    // Ambient life: packets flow along every link and LEDs blink.
+    // Why: shows the system is live (state), independent of scroll.
+    pipe.links.forEach((l, i) => {
+      const len = l.path.getTotalLength();
+      [0, 0.5].forEach(offset => {
+        const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        dot.setAttribute("r", 4);
+        dot.setAttribute("style", "fill:var(--accent)");
+        l.path.parentNode.appendChild(dot);
+        const state = { t: 0 };
+        gsap.to(state, {
+          t: 1, duration: l.dur, repeat: -1, ease: "none", delay: offset * l.dur + i * 0.1,
+          onUpdate: () => {
+            const p = l.path.getPointAtLength((l.reverse ? 1 - state.t : state.t) * len);
+            dot.setAttribute("cx", p.x); dot.setAttribute("cy", p.y);
+          }
         });
-    </script>
-    <script src="js/custom.js"></script>
-    <script src="js/galeri.js"></script>
+      });
+    });
+    pipe.leds.forEach(l => {
+      gsap.fromTo(l.node, { opacity: l.max }, {
+        opacity: l.min, duration: l.slow ? 0.7 : gsap.utils.random(0.12, 0.5),
+        repeat: -1, yoyo: true, ease: "steps(1)", delay: gsap.utils.random(0, 1.5), repeatDelay: gsap.utils.random(0.1, 1.2)
+      });
+    });
 
+    // Scroll story. Why: tells the order of events (detect, connect, unify) on one diagram.
+    // Timeline length is 3: t 0-1 devices report, 1-2 the network carries it, 2-3 the platform correlates it.
+    const NSV = "http://www.w3.org/2000/svg";
+    const mkDot = () => {
+      const c = document.createElementNS(NSV, "circle");
+      c.setAttribute("r", 9);
+      c.setAttribute("style", "fill:var(--accent);stroke:var(--bg);stroke-width:3");
+      pipe.svg.appendChild(c);
+      return c;
+    };
+    const devLens = pipe.devRoutes.map(r => r.getTotalLength());
+    const srvLen = pipe.srvRoute.getTotalLength();
+    pipe.devRoutes.forEach((r, i) => gsap.set(r, { strokeDasharray: devLens[i], strokeDashoffset: devLens[i] }));
+    gsap.set(pipe.srvRoute, { strokeDasharray: srvLen, strokeDashoffset: srvLen });
+    gsap.set([pipe.gNet, pipe.gSrv], { opacity: 0.22 });
+
+    const devDots = pipe.devRoutes.map(() => mkDot());
+    const srvDot = mkDot();
+    gsap.set(devDots, { opacity: 0 });
+    gsap.set(srvDot, { opacity: 0 });
+
+    const steps = gsap.utils.toArray("#pipeSteps .pipe-step");
+    const setStep = n => steps.forEach((s, i) => s.classList.toggle("on", i === n));
+    const prog = { t: 0 };
+    const render = () => {
+      const a = Math.min(prog.t / 1.5, 1);                         // devices -> switch
+      const b = Math.min(Math.max((prog.t - 1.5) / 1.5, 0), 1);    // switch -> platform
+      pipe.devRoutes.forEach((r, i) => {
+        r.style.strokeDashoffset = devLens[i] * (1 - a);
+        const p = r.getPointAtLength(a * devLens[i]);
+        devDots[i].setAttribute("cx", p.x); devDots[i].setAttribute("cy", p.y);
+        devDots[i].style.opacity = a > 0 && a < 1 ? 1 : 0;
+      });
+      pipe.srvRoute.style.strokeDashoffset = srvLen * (1 - b);
+      const q = pipe.srvRoute.getPointAtLength(b * srvLen);
+      srvDot.setAttribute("cx", q.x); srvDot.setAttribute("cy", q.y);
+      srvDot.style.opacity = prog.t > 0 && a >= 1 ? 1 : 0;
+    };
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#pipePin", start: "top top", end: () => "+=" + window.innerHeight * 2.2,
+        pin: true, scrub: 0.6, invalidateOnRefresh: true,
+        refreshPriority: 1, // refresh first so its pin spacing is counted by every trigger below it
+        onUpdate: self => setStep(Math.min(2, Math.floor(self.progress * 3)))
+      }
+    });
+    tl.to(prog, { t: 3, duration: 3, ease: "none", onUpdate: render }, 0)
+      .to(pipe.gNet, { opacity: 1, duration: 0.35 }, 1.0)
+      .to(pipe.gSrv, { opacity: 1, duration: 0.35 }, 2.0)
+      .to(srvDot, { attr: { r: 14 }, duration: 0.2, yoyo: true, repeat: 1 }, 2.8);
+
+    return () => { setStep(0); };   // matchMedia reverts tweens if the preference changes
+  });
+
+  /* ---------- Hero background: network mesh ----------
+     Nodes drift and link up; data packets hop node to node; the cursor pulls nearby nodes in.
+     Why: it is the same network the "One system, every device" section explains, so the page opens on its theme.
+     Plain canvas, paused when the hero is off screen, one still frame when the user asks for reduced motion. */
+  (function () {
+    const TAU = Math.PI * 2, LINK = 150;
+    const rand = (a, b) => a + Math.random() * (b - a);
+    const root = document.documentElement;
+    const hero = document.getElementById("hero");
+    const cv = document.getElementById("heroBg");
+    const ctx = cv.getContext("2d");
+    const still = !window.FORCE_MOTION && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let W = 0, H = 0, DPR = 1, nodes = [], adj = [], packets = [];
+    let running = false, onScreen = true, last = 0;
+    const C = { acc: "254,127,45", line: "255,255,255", dark: true };
+    const ptr = { x: 0, y: 0, sx: 0, sy: 0, active: false, seen: false };
+
+    function readColors() {
+      C.dark = root.getAttribute("data-theme") !== "light";
+      C.line = C.dark ? "255,255,255" : "12,14,17";
+      const hex = getComputedStyle(root).getPropertyValue("--accent").trim().replace("#", "");
+      if (hex.length === 6) C.acc = [0, 2, 4].map(i => parseInt(hex.slice(i, i + 2), 16)).join(",");
+    }
+    function setup() {
+      const r = hero.getBoundingClientRect();
+      W = Math.round(r.width); H = Math.round(r.height);
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = W * DPR; cv.height = H * DPR;
+      readColors();
+      const n = Math.round(Math.min(130, Math.max(34, W * H / 14000)));
+      nodes = Array.from({ length: n }, (_, i) => ({
+        x: rand(0, W), y: rand(0, H), vx: rand(-12, 12), vy: rand(-12, 12), hub: i % 9 === 0, flash: 0
+      }));
+      adj = nodes.map(() => []); packets = [];
+      if (still || !running) draw(0);
+    }
+
+    function draw(dt) {
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      const k = C.dark ? 1 : 1.6;
+      for (const n of nodes) {
+        if (ptr.active) {
+          const dx = ptr.sx - n.x, dy = ptr.sy - n.y, d = Math.hypot(dx, dy);
+          if (d < 200 && d > 1) { const f = (1 - d / 200) * 28; n.x += dx / d * f * dt; n.y += dy / d * f * dt; }
+        }
+        n.x += n.vx * dt; n.y += n.vy * dt;
+        if (n.x < -30) n.x = W + 30; else if (n.x > W + 30) n.x = -30;
+        if (n.y < -30) n.y = H + 30; else if (n.y > H + 30) n.y = -30;
+        n.flash = Math.max(0, n.flash - dt * 1.4);
+      }
+      adj.forEach(a => { a.length = 0; });
+      ctx.lineWidth = 1;
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+          if (d2 < LINK * LINK) {
+            const d = Math.sqrt(d2);
+            adj[i].push(j); adj[j].push(i);
+            ctx.strokeStyle = `rgba(${C.line},${(1 - d / LINK) * 0.26 * k})`;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+      }
+      if (ptr.active) {
+        for (const n of nodes) {
+          const d = Math.hypot(n.x - ptr.sx, n.y - ptr.sy);
+          if (d < 190) {
+            ctx.strokeStyle = `rgba(${C.acc},${(1 - d / 190) * 0.55})`;
+            ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(ptr.sx, ptr.sy); ctx.stroke();
+          }
+        }
+      }
+      for (const n of nodes) {
+        ctx.fillStyle = `rgba(${C.line},${Math.min(1, 0.5 * k)})`;
+        ctx.beginPath(); ctx.arc(n.x, n.y, n.hub ? 3 : 1.8, 0, TAU); ctx.fill();
+        if (n.hub) { ctx.strokeStyle = `rgba(${C.acc},.6)`; ctx.beginPath(); ctx.arc(n.x, n.y, 7, 0, TAU); ctx.stroke(); }
+        if (n.flash > 0) {
+          ctx.strokeStyle = `rgba(${C.acc},${n.flash * 0.9})`;
+          ctx.beginPath(); ctx.arc(n.x, n.y, 4 + (1 - n.flash) * 14, 0, TAU); ctx.stroke();
+        }
+      }
+      if (packets.length < 14 && Math.random() < dt * 3) {
+        const i = (Math.random() * nodes.length) | 0;
+        if (adj[i].length) packets.push({ a: i, b: adj[i][(Math.random() * adj[i].length) | 0], t: 0, hops: 3 + ((Math.random() * 5) | 0), spd: rand(90, 150) });
+      }
+      for (let p = packets.length - 1; p >= 0; p--) {
+        const pk = packets[p], a = nodes[pk.a], b = nodes[pk.b];
+        const dist = Math.hypot(b.x - a.x, b.y - a.y) || 1;
+        pk.t += pk.spd * dt / dist;
+        if (pk.t >= 1) {
+          b.flash = 1; pk.hops--;
+          const opts = adj[pk.b].filter(x => x !== pk.a);
+          if (pk.hops <= 0 || !opts.length) { packets.splice(p, 1); continue; }
+          pk.a = pk.b; pk.b = opts[(Math.random() * opts.length) | 0]; pk.t = 0;
+          continue;
+        }
+        const x = a.x + (b.x - a.x) * pk.t, y = a.y + (b.y - a.y) * pk.t;
+        const t0 = Math.max(0, pk.t - 46 / dist);
+        const gx = a.x + (b.x - a.x) * t0, gy = a.y + (b.y - a.y) * t0;
+        const g = ctx.createLinearGradient(gx, gy, x, y);
+        g.addColorStop(0, `rgba(${C.acc},0)`); g.addColorStop(1, `rgba(${C.acc},.9)`);
+        ctx.strokeStyle = g; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(gx, gy); ctx.lineTo(x, y); ctx.stroke();
+        ctx.lineWidth = 1;
+        ctx.fillStyle = `rgb(${C.acc})`; ctx.shadowColor = `rgb(${C.acc})`; ctx.shadowBlur = 10;
+        ctx.beginPath(); ctx.arc(x, y, 3, 0, TAU); ctx.fill(); ctx.shadowBlur = 0;
+      }
+    }
+
+    function frame(now) {
+      if (!running) return;
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      ptr.sx += (ptr.x - ptr.sx) * Math.min(1, dt * 9); ptr.sy += (ptr.y - ptr.sy) * Math.min(1, dt * 9);
+      draw(dt);
+      requestAnimationFrame(frame);
+    }
+    function start() { if (still || running || !onScreen) return; running = true; last = performance.now(); requestAnimationFrame(frame); }
+    function stop() { running = false; }
+
+    hero.addEventListener("pointermove", e => {
+      const r = hero.getBoundingClientRect();
+      ptr.x = e.clientX - r.left; ptr.y = e.clientY - r.top; ptr.active = true;
+      if (!ptr.seen) { ptr.sx = ptr.x; ptr.sy = ptr.y; ptr.seen = true; }
+    });
+    hero.addEventListener("pointerleave", () => { ptr.active = false; });
+
+    new MutationObserver(() => { readColors(); if (still) draw(0); })
+      .observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+    let rt;
+    new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(setup, 120); }).observe(hero);
+    new IntersectionObserver(es => { onScreen = es[0].isIntersecting; onScreen ? start() : stop(); }).observe(hero);
+
+    const boot = () => { setup(); cv.classList.add("on"); start(); };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(boot); else boot();
+  })();
+
+</script>
 </body>
 </html>
