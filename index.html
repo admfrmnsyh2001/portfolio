@@ -209,14 +209,21 @@
       repeating-radial-gradient(circle at 30% 120%, transparent 0 22px, color-mix(in srgb, var(--accent) 16%, transparent) 22px 23px),
       var(--tint);
   }
-  .visual .big-year { font-size: clamp(5rem, 11vw, 9.5rem); font-weight: 900; letter-spacing: -0.06em; line-height: .85; color: color-mix(in srgb, var(--fg) 88%, transparent); }
+  /* Project photo is shown whole (never cropped); leftover space is filled with a blurred copy of the same photo (--photo).
+     If the file is missing, onerror removes the img and the big year shows as fallback. */
+  .visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; z-index: 2; }
+  .visual:has(img)::before { content: ""; position: absolute; inset: -30px; background: var(--photo) center / cover no-repeat; filter: blur(26px) saturate(1.15); z-index: 1; }
+  .visual:has(img) .big-year { visibility: hidden; }
+  .visual .big-year { position: relative; font-size: clamp(5rem, 11vw, 9.5rem); font-weight: 900; letter-spacing: -0.06em; line-height: .85; color: color-mix(in srgb, var(--fg) 88%, transparent); }
   .project-body { padding: clamp(28px, 4vw, 52px); display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
   .project-body h3 { font-size: clamp(1.6rem, 2.6vw, 2.3rem); font-weight: 800; max-width: 18ch; }
   .project-body p { color: var(--muted); max-width: 46ch; margin-top: 16px; }
+  .project-body p a { color: var(--accent-ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .project-body p a:hover { color: var(--fg); }
   .project-meta { display: flex; flex-wrap: wrap; gap: 8px; }
   .project-client { color: var(--accent-ink); font-weight: 700; font-size: 15px; margin-bottom: 12px; }
   @media (max-width: 860px) {
-    .project { grid-template-columns: 1fr; grid-template-rows: 150px 1fr; height: min(100%, 640px); }
+    .project { grid-template-columns: 1fr; grid-template-rows: 210px 1fr; height: min(100%, 640px); }
     .visual { padding: 20px; }
     .visual .big-year { font-size: 4.2rem; }
   }
@@ -267,7 +274,8 @@
   ------------------------------------------------------------------ */
   .contact { padding-block: clamp(80px, 12vw, 150px); background: var(--surface); border-top: 1px solid var(--line); }
   .contact-grid { display: grid; grid-template-columns: 6fr 5fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
-  .email-big { display: inline-block; margin-top: 32px; font-size: clamp(1.4rem, 3.2vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; border-bottom: 2px solid var(--accent); padding-bottom: 6px; word-break: break-all; transition: color .25s; }
+  .contact-grid > div:first-child { container-type: inline-size; min-width: 0; }
+  .email-big { display: inline-block; margin-top: 32px; font-size: clamp(0.9rem, 5.2cqi, 2rem); font-weight: 800; letter-spacing: -0.03em; border-bottom: 2px solid var(--accent); padding-bottom: 6px; white-space: nowrap; transition: color .25s; }
   .email-big:hover { color: var(--accent-ink); }
   .reach { margin-top: 36px; display: grid; gap: 14px; }
   .reach a { display: inline-flex; align-items: center; gap: 12px; color: var(--muted); font-weight: 600; transition: color .2s; width: fit-content; }
@@ -380,7 +388,19 @@
     <div class="stack" id="stack">
 
       <div class="stack-card"><article class="project">
-        <div class="visual"><div class="big-year">2026</div></div>
+        <div class="visual" style="--photo:url(images/projects/mstay.jpg)"><img src="images/projects/mstay.jpg" alt="Integrated Property Management" loading="lazy" onerror="this.remove()"><div class="big-year">2026</div></div>
+        <div class="project-body">
+          <div>
+            <div class="project-client">Integrated Property Management</div>
+            <h3>Smart Lock Stay Automation</h3>
+            <p>Integrated accommodation management platform connected to smart locks. Guests simply place a booking and their unique room PIN is sent straight to their email, with no front-desk handover or physical keys needed. Visit <a href="https://mstay.luckey.id" target="_blank" rel="noopener noreferrer">mstay.luckey.id</a>.</p>
+          </div>
+          <div class="project-meta"><span class="tag year">2026</span><span class="tag">Smart Lock</span><span class="tag">Property Management</span><span class="tag">Integration</span></div>
+        </div>
+      </article></div>
+
+      <div class="stack-card"><article class="project">
+        <div class="visual" style="--photo:url(images/projects/galon.jfif)"><img src="images/projects/galon.jfif" alt="Gallon monitoring sensor installed in a water dispenser" loading="lazy" onerror="this.remove()"><div class="big-year">2026</div></div>
         <div class="project-body">
           <div>
             <div class="project-client">Indosat Ooredoo</div>
@@ -392,7 +412,7 @@
       </article></div>
 
       <div class="stack-card"><article class="project">
-        <div class="visual"><div class="big-year">2025</div></div>
+        <div class="visual" style="--photo:url(images/projects/acs.jfif)"><img src="images/projects/acs.jfif" alt="Access control system at the Kalayang Depot, Soekarno-Hatta Airport" loading="lazy" onerror="this.remove()"><div class="big-year">2025</div></div>
         <div class="project-body">
           <div>
             <div class="project-client">Soekarno-Hatta Airport</div>
@@ -404,7 +424,7 @@
       </article></div>
 
       <div class="stack-card"><article class="project">
-        <div class="visual"><div class="big-year">2025</div></div>
+        <div class="visual" style="--photo:url(images/projects/network.jfif)"><img src="images/projects/network.jfif" alt="Network rack with servers and fiber patching" loading="lazy" onerror="this.remove()"><div class="big-year">2025</div></div>
         <div class="project-body">
           <div>
             <div class="project-client">Executive Home Office</div>
@@ -416,19 +436,19 @@
       </article></div>
 
       <div class="stack-card"><article class="project">
-        <div class="visual"><div class="big-year">2024</div></div>
+        <div class="visual" style="--photo:url(images/projects/dps.jfif)"><img src="images/projects/dps.jfif" alt="Denpasar Residence" loading="lazy" onerror="this.remove()"><div class="big-year">2024</div></div>
         <div class="project-body">
           <div>
             <div class="project-client">Denpasar Residence</div>
-            <h3>Access Control System</h3>
-            <p>Managed full-cycle installation of access servers, door devices and elevator integration, then commissioned and tested the system.</p>
+            <h3>Access Control Integrated with Elevators</h3>
+            <p>Access control system integrated with the elevators (lifts). Managed full-cycle installation of access servers, door devices and the elevator integration, then commissioned and tested the whole system.</p>
           </div>
-          <div class="project-meta"><span class="tag year">2024</span><span class="tag">Access Control</span><span class="tag">Security</span></div>
+          <div class="project-meta"><span class="tag year">2024</span><span class="tag">Access Control</span><span class="tag">Elevator Integration</span><span class="tag">Security</span></div>
         </div>
       </article></div>
 
       <div class="stack-card"><article class="project">
-        <div class="visual"><div class="big-year">2024</div></div>
+        <div class="visual" style="--photo:url(images/projects/mcs.jfif)"><img src="images/projects/mcs.jfif" alt="Rack of access controller boards at the Microsoft JKT02 Data Center" loading="lazy" onerror="this.remove()"><div class="big-year">2024</div></div>
         <div class="project-body">
           <div>
             <div class="project-client">Microsoft JKT02 Data Center</div>
@@ -440,7 +460,7 @@
       </article></div>
 
       <div class="stack-card"><article class="project">
-        <div class="visual"><div class="big-year">2023</div></div>
+        <div class="visual" style="--photo:url(images/projects/ykk.jfif)"><img src="images/projects/ykk.jfif" alt="CCTV installation at YKK Zipco Indonesia" loading="lazy" onerror="this.remove()"><div class="big-year">2023</div></div>
         <div class="project-body">
           <div>
             <div class="project-client">YKK Zipco Indonesia</div>
