@@ -145,13 +145,6 @@
   .hero h1 .em { color: var(--accent-ink); }
   .hero .lede { margin-top: 28px; font-size: 1.12rem; }
   .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
-  /* Teaser: points to the Recognition section further down the page. */
-  .hero-award { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; max-width: 100%; padding: 8px 16px 8px 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--glass); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); font-size: 14px; font-weight: 600; color: var(--muted); transition: border-color .25s, color .25s; }
-  .hero-award:hover { border-color: var(--accent); color: var(--fg); }
-  .hero-award .ico { width: 30px; height: 30px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 17px; }
-  .hero-award b { color: var(--fg); font-weight: 800; }
-  .hero-award .arr { color: var(--accent-ink); font-size: 16px; flex: none; transition: transform .3s var(--ease); }
-  .hero-award:hover .arr { transform: translateY(3px); }
   .portrait { width: min(100%, 280px); aspect-ratio: 1; justify-self: center; border-radius: 50%; overflow: hidden; background: var(--surface); }
   .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
   @media (max-width: 860px) {
@@ -276,6 +269,26 @@
   @media (max-width: 860px) { .award-card { grid-template-columns: 1fr; } .award-main { min-height: 0; aspect-ratio: 4 / 5; } .award-shots figure { height: 190px; } }
 
   /* ------------------------------------------------------------------
+     Certification: one card, optional scan of the certificate on the right
+  ------------------------------------------------------------------ */
+  .cert { padding-bottom: clamp(96px, 14vw, 180px); }
+  .cert-head { margin-bottom: 40px; }
+  .cert-card { display: grid; grid-template-columns: 1fr; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); }
+  .cert-card:has(.cert-scan img) { grid-template-columns: 6fr 5fr; }
+  .cert-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; margin-top: 24px; }
+  .cert-facts dt { font-size: 13px; font-weight: 700; color: var(--muted); }
+  .cert-facts dd { font-weight: 700; margin-top: 2px; }
+  .cert-body { padding: clamp(28px, 4vw, 52px); display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+  .cert-ico { width: 64px; height: 64px; display: grid; place-items: center; border-radius: 18px; background: var(--accent); color: var(--on-accent); font-size: 36px; }
+  .cert-body h3 { font-size: clamp(1.6rem, 2.6vw, 2.3rem); font-weight: 800; max-width: 20ch; }
+  .cert-body p { color: var(--muted); max-width: 56ch; margin-top: 16px; }
+  .cert-scan { position: relative; display: block; min-height: 560px; background: var(--tint); }
+  .cert-scan:not(:has(img)) { display: none; }
+  .cert-scan img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 24px; transition: transform .5s var(--ease); }
+  .cert-scan:hover img { transform: scale(1.025); }
+  @media (max-width: 860px) { .cert-card:has(.cert-scan img) { grid-template-columns: 1fr; } .cert-scan { min-height: 0; aspect-ratio: 3 / 4; } .cert-facts { grid-template-columns: 1fr; } }
+
+  /* ------------------------------------------------------------------
      Skills: bento, exactly 5 cells
   ------------------------------------------------------------------ */
   .skills { padding-bottom: clamp(96px, 14vw, 180px); }
@@ -365,7 +378,6 @@
           <a class="btn btn-primary" id="magnet" href="#projects">View projects <i class="ph ph-arrow-down-right"></i></a>
           <a class="btn btn-ghost" href="CV_Adam_Firmansyah2026.pdf" download><i class="ph ph-download-simple"></i> Download CV</a>
         </div>
-        <a class="hero-award" href="#award"><span class="ico"><i class="ph ph-trophy" aria-hidden="true"></i></span><span><b>2nd place</b> Pemuda Pelopor West Jakarta, Technology Innovation</span><i class="ph ph-arrow-down arr" aria-hidden="true"></i></a>
       </div>
       <div class="portrait" id="portrait">
         <img src="images/profil.jfif" width="400" height="400" alt="Portrait of Adam Firmansyah" decoding="async">
@@ -560,6 +572,31 @@
           <p>Local network planning, hardware maintenance and IT infrastructure configuration.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATION -->
+  <section class="cert" id="certification">
+    <div class="wrap">
+      <div class="cert-head"><h2 class="section-title">Certification</h2></div>
+      <article class="cert-card" id="certCard">
+        <div class="cert-body">
+          <div class="cert-ico"><i class="ph ph-certificate" aria-hidden="true"></i></div>
+          <div>
+            <div class="project-client">BNSP, National Professional Certification Agency</div>
+            <h3>Network Administrator</h3>
+            <p>Official Certificate of Competence in network administration, issued on behalf of BNSP (Badan Nasional Sertifikasi Profesi) by the Professional Certification Body of Pamulang University.</p>
+            <dl class="cert-facts">
+              <div><dt>Competence area</dt><dd>Cable Telecommunications Activities</dd></div>
+              <div><dt>Issued</dt><dd>23 October 2024</dd></div>
+              <div><dt>Certifying body</dt><dd>LSP Universitas Pamulang</dd></div>
+              <div><dt>Validity</dt><dd>3 years</dd></div>
+            </dl>
+          </div>
+          <div class="project-meta"><span class="tag year">2024</span><span class="tag">BNSP</span><span class="tag">Official certificate</span><span class="tag">Network</span></div>
+        </div>
+        <a class="cert-scan" href="images/champions/sert.jpeg" target="_blank" rel="noopener" aria-label="Open the certificate image in a new tab"><img src="images/champions/sert.jpeg" alt="BNSP Certificate of Competence, Network Administrator, Adam Firmansyah" loading="lazy" onerror="this.parentNode.remove()"></a>
+      </article>
     </div>
   </section>
 
@@ -850,7 +887,6 @@
       .from(".rot-item:first-child .char", { yPercent: 110, duration: 1.1, stagger: 0.018 })
       .from(".hero-sub", { y: 20, opacity: 0, duration: 0.9 }, "-=0.7")
       .from(".hero-cta .btn", { y: 16, opacity: 0, duration: 0.8, stagger: 0.08 }, "-=0.7")
-      .from(".hero-award", { y: 14, opacity: 0, duration: 0.8 }, "-=0.6")
       .from("#portrait", { clipPath: "inset(0 0 100% 0)", duration: 1.2 }, 0.1);
 
     // Rotating headline. Why: one headline slot tells the whole story (name, then each role) without more text on screen.
@@ -929,6 +965,12 @@
     ScrollTrigger.create({
       trigger: "#awardCard", start: "top 88%", once: true,
       onEnter: () => gsap.to("#awardCard", { opacity: 1, y: 0, duration: 0.9, ease: "expo.out" })
+    });
+
+    gsap.set("#certCard", { opacity: 0, y: 36 });
+    ScrollTrigger.create({
+      trigger: "#certCard", start: "top 88%", once: true,
+      onEnter: () => gsap.to("#certCard", { opacity: 1, y: 0, duration: 0.9, ease: "expo.out" })
     });
 
     /* ----- Integrated system diagram ----- */
