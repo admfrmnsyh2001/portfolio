@@ -289,6 +289,28 @@
   @media (max-width: 860px) { .cert-card:has(.cert-scan img) { grid-template-columns: 1fr; } .cert-scan { min-height: 0; aspect-ratio: 3 / 4; } .cert-facts { grid-template-columns: 1fr; } }
 
   /* ------------------------------------------------------------------
+     Work gallery: masonry columns, click opens a lightbox.
+     The whole section stays hidden until at least one photo (figure) exists.
+  ------------------------------------------------------------------ */
+  .gallery { padding-bottom: clamp(96px, 14vw, 180px); }
+  .gallery:not(:has(figure)) { display: none; }
+  .gallery-head { margin-bottom: 40px; display: grid; gap: 14px; }
+  .gallery-grid { columns: 3; column-gap: 16px; }
+  .gallery-grid figure { break-inside: avoid; margin-bottom: 16px; position: relative; overflow: hidden; border-radius: 16px; border: 1px solid var(--line); background: var(--surface-2); cursor: zoom-in; }
+  .gallery-grid img { width: 100%; height: auto; display: block; transition: transform .7s var(--ease); }
+  .gallery-grid figure:hover img { transform: scale(1.04); }
+  .gallery-grid figcaption { position: absolute; left: 12px; bottom: 12px; right: 12px; width: fit-content; max-width: calc(100% - 24px); padding: 5px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; background: var(--glass); color: var(--fg); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+  @media (max-width: 860px) { .gallery-grid { columns: 2; } }
+  @media (max-width: 520px) { .gallery-grid { columns: 1; } }
+  .lightbox { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100dvh; width: 100vw; height: 100dvh; overflow: hidden; }
+  .lightbox::backdrop { background: rgba(6, 8, 10, .88); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  .lightbox-inner { width: 100%; height: 100%; display: grid; place-items: center; padding: 56px 20px 20px; cursor: zoom-out; }
+  .lightbox img { max-width: min(1200px, 100%); max-height: calc(100dvh - 120px); object-fit: contain; border-radius: 12px; }
+  .lightbox p { margin-top: 14px; color: #ECEAE6; font-weight: 600; text-align: center; }
+  .lightbox-close { position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #ECEAE6; font-size: 20px; display: grid; place-items: center; cursor: pointer; }
+  .lightbox-close:hover { background: rgba(255,255,255,.18); }
+
+  /* ------------------------------------------------------------------
      Skills: bento, exactly 5 cells
   ------------------------------------------------------------------ */
   .skills { padding-bottom: clamp(96px, 14vw, 180px); }
@@ -600,6 +622,31 @@
     </div>
   </section>
 
+  <!-- WORK GALLERY. Hidden by CSS until it contains at least one <figure>.
+       To add a photo: put the file in images/gallery/ and add a line like this inside .gallery-grid:
+       <figure><img src="images/gallery/nama-file.jpg" alt="Short description" loading="lazy"><figcaption>Short caption</figcaption></figure> -->
+  <section class="gallery" id="gallery">
+    <div class="wrap">
+      <div class="gallery-head">
+        <h2 class="section-title">Work gallery</h2>
+        <p class="lede">Photos from the field: the day-to-day work behind the projects.</p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <figure><img src="images/gallery/g1.jpeg" alt="Briefing and hands-on demo for airport security officers at a vehicle gate" width="1024" height="597" loading="lazy"><figcaption>On-site briefing</figcaption></figure>
+        <figure><img src="images/gallery/g2.jpeg" alt="Two engineers with the Simplo warehouse management demo kits, laptops and cabling on the table" width="1024" height="879" loading="lazy"><figcaption>Simplo demo kits</figcaption></figure>
+        <figure><img src="images/gallery/g3.jpeg" alt="Presenting the Simplo demo kits to an audience" width="984" height="1024" loading="lazy"><figcaption>Product presentation</figcaption></figure>
+        <figure><img src="images/gallery/g4.jpeg" alt="Working at a CCTV monitoring station with several video walls" width="928" height="1024" loading="lazy"><figcaption>CCTV monitoring station</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+    <div class="lightbox-inner" id="lightboxInner">
+      <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close photo"><i class="ph ph-x" aria-hidden="true"></i></button>
+      <div><img id="lightboxImg" alt=""><p id="lightboxCap"></p></div>
+    </div>
+  </dialog>
+
   <!-- SKILLS (bento, 5 content groups = 5 cells) -->
   <section class="skills" id="skills">
     <div class="wrap">
@@ -740,6 +787,23 @@
       const f = e.target.closest("[data-field]");
       if (f && valid[e.target.id](e.target.value)) f.classList.remove("invalid");
     });
+  })();
+
+  /* ---------- Work gallery lightbox (click a photo to enlarge, click anywhere or press Esc to close) ---------- */
+  (function () {
+    const grid = document.getElementById("galleryGrid"), box = document.getElementById("lightbox");
+    const img = document.getElementById("lightboxImg"), cap = document.getElementById("lightboxCap");
+    if (!grid || !box || !box.showModal) return;
+    grid.addEventListener("click", e => {
+      const fig = e.target.closest("figure"); if (!fig) return;
+      const src = fig.querySelector("img");
+      img.src = src.currentSrc || src.src; img.alt = src.alt;
+      const c = fig.querySelector("figcaption"); cap.textContent = c ? c.textContent : "";
+      box.showModal();
+    });
+    box.addEventListener("click", () => box.close());
+    // Photos that fail to load are dropped so the grid never shows a broken icon.
+    grid.addEventListener("error", e => { const f = e.target.closest && e.target.closest("figure"); if (f) f.remove(); }, true);
   })();
 
   /* ---------- Split hero headline into characters ---------- */
@@ -953,6 +1017,14 @@
     });
 
     // Bento reveal in batches. Why: groups arrive together so the grid reads as a set.
+    // Work gallery photos rise in as they scroll into view.
+    const shots = gsap.utils.toArray(".gallery-grid figure");
+    gsap.set(shots, { opacity: 0, y: 36 });
+    ScrollTrigger.batch(shots, {
+      start: "top 92%", once: true,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", stagger: 0.08 })
+    });
+
     const cells = gsap.utils.toArray(".cell");
     gsap.set(cells, { opacity: 0, y: 36 });
     ScrollTrigger.batch(cells, {
