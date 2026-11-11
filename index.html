@@ -86,6 +86,8 @@
   .btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, white); }
   .btn-ghost { border-color: var(--line); color: var(--fg); background: transparent; }
   .btn-ghost:hover { border-color: var(--fg); }
+  .btn.is-disabled, .btn.is-disabled:hover { opacity: .45; cursor: not-allowed; border-color: var(--line); }
+  .btn.is-disabled:active { transform: none; }
   .tag {
     display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 999px;
     font-size: 13px; font-weight: 600; color: var(--muted);
@@ -398,7 +400,8 @@
         <p class="lede hero-sub">Security systems integration professional with 3+ years of experience. I&nbsp;deliver the full project cycle: site survey, BoQ estimation, installation, configuration, testing and commissioning, user training, and documentation.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" id="magnet" href="#projects">View projects <i class="ph ph-arrow-down-right"></i></a>
-          <a class="btn btn-ghost" href="CV_Adam_Firmansyah2026.pdf" download><i class="ph ph-download-simple"></i> Download CV</a>
+          <!-- Disabled for now. To enable again: add href="CV_Adam_Firmansyah2026.pdf" download, and remove aria-disabled and the is-disabled class. -->
+          <a class="btn btn-ghost is-disabled" aria-disabled="true" role="link"><i class="ph ph-download-simple"></i> Download CV</a>
         </div>
       </div>
       <div class="portrait" id="portrait">
