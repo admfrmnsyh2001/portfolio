@@ -246,6 +246,29 @@
   @media (max-width: 860px) { .exp-grid { grid-template-columns: 1fr; } .exp-sticky { position: static; } }
 
   /* ------------------------------------------------------------------
+     Recognition: one featured award card
+  ------------------------------------------------------------------ */
+  .award { padding-bottom: clamp(96px, 14vw, 180px); }
+  .award-head { margin-bottom: 40px; }
+  .award-card { display: grid; grid-template-columns: 5fr 7fr; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); }
+  .award-main { position: relative; min-height: 520px; background: var(--tint); }
+  .award-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  .award-badge { position: absolute; left: 20px; bottom: 20px; z-index: 2; display: flex; align-items: center; gap: 14px; padding: 12px 22px 12px 14px; border-radius: 999px; background: var(--accent); color: var(--on-accent); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+  .award-badge i { font-size: 30px; }
+  .award-badge b { display: block; font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em; line-height: 1; }
+  .award-badge span { display: block; font-size: 13px; font-weight: 800; margin-top: 3px; }
+  .award-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .award-shots figure { position: relative; height: 230px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--surface-2); }
+  .award-shots img { width: 100%; height: 100%; object-fit: cover; }
+  .award-shots figure:first-child img { object-position: 50% 45%; }
+  .award-shots figcaption { position: absolute; left: 10px; bottom: 10px; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; background: var(--glass); color: var(--fg); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+  .award-body { padding: clamp(28px, 4vw, 52px); display: flex; flex-direction: column; justify-content: space-between; gap: 28px; }
+  .award-body h3 { font-size: clamp(1.6rem, 2.6vw, 2.3rem); font-weight: 800; max-width: 20ch; }
+  .award-body p { color: var(--muted); max-width: 56ch; margin-top: 16px; }
+  .award-body p strong { color: var(--fg); font-weight: 700; }
+  @media (max-width: 860px) { .award-card { grid-template-columns: 1fr; } .award-main { min-height: 0; aspect-ratio: 4 / 5; } .award-shots figure { height: 190px; } }
+
+  /* ------------------------------------------------------------------
      Skills: bento, exactly 5 cells
   ------------------------------------------------------------------ */
   .skills { padding-bottom: clamp(96px, 14vw, 180px); }
@@ -504,6 +527,31 @@
           <p>Local network planning, hardware maintenance and IT infrastructure configuration.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section class="award" id="award">
+    <div class="wrap">
+      <div class="award-head"><h2 class="section-title">Recognition</h2></div>
+      <article class="award-card" id="awardCard">
+        <div class="award-main">
+          <img src="images/champions/1.jpeg" alt="Adam receiving the 2nd place certificate and trophy at Pemuda Pelopor West Jakarta" loading="lazy">
+          <div class="award-badge"><i class="ph ph-trophy" aria-hidden="true"></i><div><b>2nd place</b><span>Technology Innovation</span></div></div>
+        </div>
+        <div class="award-body">
+          <div>
+            <div class="project-client">Pemuda Pelopor, West Jakarta</div>
+            <h3>Technology Innovation category</h3>
+            <p>Built <strong>Open Microlock</strong>, an economical, open source access control solution, and won 2nd place in the Technology Innovation category of the Pemuda Pelopor competition in West Jakarta.</p>
+          </div>
+          <div class="award-shots">
+            <figure><img src="images/champions/2.jpeg" alt="Presenting the Open Microlock demo to the judges" loading="lazy"><figcaption>Demo to the judges</figcaption></figure>
+            <figure><img src="images/champions/3.jpeg" alt="Open Microlock hardware kit: controller, reader and electric lock in a case" loading="lazy"><figcaption>Open Microlock kit</figcaption></figure>
+          </div>
+          <div class="project-meta"><span class="tag year">2026</span><span class="tag">Open Microlock</span><span class="tag">Access Control</span><span class="tag">Open Source</span></div>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -865,6 +913,13 @@
     ScrollTrigger.batch(cells, {
       start: "top 90%", once: true,
       onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out", stagger: 0.09 })
+    });
+
+    // Award card rises in once when it scrolls into view.
+    gsap.set("#awardCard", { opacity: 0, y: 36 });
+    ScrollTrigger.create({
+      trigger: "#awardCard", start: "top 88%", once: true,
+      onEnter: () => gsap.to("#awardCard", { opacity: 1, y: 0, duration: 0.9, ease: "expo.out" })
     });
 
     /* ----- Integrated system diagram ----- */
