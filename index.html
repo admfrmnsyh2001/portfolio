@@ -145,6 +145,13 @@
   .hero h1 .em { color: var(--accent-ink); }
   .hero .lede { margin-top: 28px; font-size: 1.12rem; }
   .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  /* Teaser: points to the Recognition section further down the page. */
+  .hero-award { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; max-width: 100%; padding: 8px 16px 8px 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--glass); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); font-size: 14px; font-weight: 600; color: var(--muted); transition: border-color .25s, color .25s; }
+  .hero-award:hover { border-color: var(--accent); color: var(--fg); }
+  .hero-award .ico { width: 30px; height: 30px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 17px; }
+  .hero-award b { color: var(--fg); font-weight: 800; }
+  .hero-award .arr { color: var(--accent-ink); font-size: 16px; flex: none; transition: transform .3s var(--ease); }
+  .hero-award:hover .arr { transform: translateY(3px); }
   .portrait { width: min(100%, 280px); aspect-ratio: 1; justify-self: center; border-radius: 50%; overflow: hidden; background: var(--surface); }
   .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
   @media (max-width: 860px) {
@@ -248,7 +255,7 @@
   /* ------------------------------------------------------------------
      Recognition: one featured award card
   ------------------------------------------------------------------ */
-  .award { padding-bottom: clamp(96px, 14vw, 180px); }
+  .award { padding-top: clamp(72px, 10vw, 140px); }
   .award-head { margin-bottom: 40px; }
   .award-card { display: grid; grid-template-columns: 5fr 7fr; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); }
   .award-main { position: relative; min-height: 520px; background: var(--tint); }
@@ -358,6 +365,7 @@
           <a class="btn btn-primary" id="magnet" href="#projects">View projects <i class="ph ph-arrow-down-right"></i></a>
           <a class="btn btn-ghost" href="CV_Adam_Firmansyah2026.pdf" download><i class="ph ph-download-simple"></i> Download CV</a>
         </div>
+        <a class="hero-award" href="#award"><span class="ico"><i class="ph ph-trophy" aria-hidden="true"></i></span><span><b>2nd place</b> Pemuda Pelopor West Jakarta, Technology Innovation</span><i class="ph ph-arrow-down arr" aria-hidden="true"></i></a>
       </div>
       <div class="portrait" id="portrait">
         <img src="images/profil.jfif" width="400" height="400" alt="Portrait of Adam Firmansyah" decoding="async">
@@ -497,6 +505,31 @@
     </div>
   </section>
 
+  <!-- RECOGNITION -->
+  <section class="award" id="award">
+    <div class="wrap">
+      <div class="award-head"><h2 class="section-title">Recognition</h2></div>
+      <article class="award-card" id="awardCard">
+        <div class="award-main">
+          <img src="images/champions/1.jpeg" alt="Adam receiving the 2nd place certificate and trophy at Pemuda Pelopor West Jakarta" loading="lazy">
+          <div class="award-badge"><i class="ph ph-trophy" aria-hidden="true"></i><div><b>2nd place</b><span>Technology Innovation</span></div></div>
+        </div>
+        <div class="award-body">
+          <div>
+            <div class="project-client">Pemuda Pelopor, West Jakarta</div>
+            <h3>Technology Innovation category</h3>
+            <p>Built <strong>Open Microlock</strong>, an economical, open source access control solution, and won 2nd place in the Technology Innovation category of the Pemuda Pelopor competition in West Jakarta.</p>
+          </div>
+          <div class="award-shots">
+            <figure><img src="images/champions/2.jpeg" alt="Presenting the Open Microlock demo to the judges" loading="lazy"><figcaption>Demo to the judges</figcaption></figure>
+            <figure><img src="images/champions/3.jpeg" alt="Open Microlock hardware kit: controller, reader and electric lock in a case" loading="lazy"><figcaption>Open Microlock kit</figcaption></figure>
+          </div>
+          <div class="project-meta"><span class="tag year">2026</span><span class="tag">Open Microlock</span><span class="tag">Access Control</span><span class="tag">Open Source</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <!-- EXPERIENCE -->
   <section class="exp" id="experience">
     <div class="wrap exp-grid">
@@ -527,31 +560,6 @@
           <p>Local network planning, hardware maintenance and IT infrastructure configuration.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- RECOGNITION -->
-  <section class="award" id="award">
-    <div class="wrap">
-      <div class="award-head"><h2 class="section-title">Recognition</h2></div>
-      <article class="award-card" id="awardCard">
-        <div class="award-main">
-          <img src="images/champions/1.jpeg" alt="Adam receiving the 2nd place certificate and trophy at Pemuda Pelopor West Jakarta" loading="lazy">
-          <div class="award-badge"><i class="ph ph-trophy" aria-hidden="true"></i><div><b>2nd place</b><span>Technology Innovation</span></div></div>
-        </div>
-        <div class="award-body">
-          <div>
-            <div class="project-client">Pemuda Pelopor, West Jakarta</div>
-            <h3>Technology Innovation category</h3>
-            <p>Built <strong>Open Microlock</strong>, an economical, open source access control solution, and won 2nd place in the Technology Innovation category of the Pemuda Pelopor competition in West Jakarta.</p>
-          </div>
-          <div class="award-shots">
-            <figure><img src="images/champions/2.jpeg" alt="Presenting the Open Microlock demo to the judges" loading="lazy"><figcaption>Demo to the judges</figcaption></figure>
-            <figure><img src="images/champions/3.jpeg" alt="Open Microlock hardware kit: controller, reader and electric lock in a case" loading="lazy"><figcaption>Open Microlock kit</figcaption></figure>
-          </div>
-          <div class="project-meta"><span class="tag year">2026</span><span class="tag">Open Microlock</span><span class="tag">Access Control</span><span class="tag">Open Source</span></div>
-        </div>
-      </article>
     </div>
   </section>
 
@@ -842,6 +850,7 @@
       .from(".rot-item:first-child .char", { yPercent: 110, duration: 1.1, stagger: 0.018 })
       .from(".hero-sub", { y: 20, opacity: 0, duration: 0.9 }, "-=0.7")
       .from(".hero-cta .btn", { y: 16, opacity: 0, duration: 0.8, stagger: 0.08 }, "-=0.7")
+      .from(".hero-award", { y: 14, opacity: 0, duration: 0.8 }, "-=0.6")
       .from("#portrait", { clipPath: "inset(0 0 100% 0)", duration: 1.2 }, 0.1);
 
     // Rotating headline. Why: one headline slot tells the whole story (name, then each role) without more text on screen.
